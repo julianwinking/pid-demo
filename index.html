@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PID Controller Demo</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>PID Controller Demo</h1>
+
+  <div class="controls">
+    <label for="kp">Kp:</label>
+    <input type="number" id="kp" step="0.1" value="1.0">
+
+    <label for="ki">Ki:</label>
+    <input type="number" id="ki" step="0.1" value="0.0">
+
+    <label for="kd">Kd:</label>
+    <input type="number" id="kd" step="0.1" value="0.0">
+
+    <label for="target">Target:</label>
+    <input type="number" id="target" step="1" value="200">
+  </div>
+
+  <canvas id="canvas" width="800" height="400"></canvas>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
