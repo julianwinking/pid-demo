@@ -1,30 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PID Controller Demo</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PID Controller Demo</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>PID Controller Demo</h1>
+    <header>
+        <h1>PID Controller Demo</h1>
+    </header>
 
-  <div class="controls">
-    <label for="kp">Kp:</label>
-    <input type="number" id="kp" step="0.1" value="1.0">
+    <div class="container">
 
-    <label for="ki">Ki:</label>
-    <input type="number" id="ki" step="0.1" value="0.0">
+        <div class="left-column">
+            <div class="controls">
+                <h2>Controls</h2>
+                <label for="kp">Kp:</label>
+                <input type="range" id="kp" min="0" max="10" step="0.1" value="1.0">
+                <span id="kp-value">1.0</span>
+                <br>
+                <label for="ki">Ki:</label>
+                <input type="range" id="ki" min="0" max="10" step="0.1" value="0.1">
+                <span id="ki-value">0.1</span>
+                <br>
+                <label for="kd">Kd:</label>
+                <input type="range" id="kd" min="0" max="10" step="0.1" value="0.01">
+                <span id="kd-value">0.01</span>
+                <br>
+                <label for="target">Target:</label>
+                <input type="range" id="target" min="0" max="800" step="1" value="100">
+                <span id="target-value">100</span>
+                <br>
+                <button id="reset-button">Reset</button>
+            </div>
+        </div>
 
-    <label for="kd">Kd:</label>
-    <input type="number" id="kd" step="0.1" value="0.0">
+        <div class="right-column">
+            <canvas id="canvas" width="800" height="500"></canvas>
+            <canvas id="pid-chart" width="800" height="200"></canvas>
+        </div>
 
-    <label for="target">Target:</label>
-    <input type="number" id="target" step="1" value="200">
-  </div>
+    </div>
 
-  <canvas id="canvas" width="800" height="400"></canvas>
+    <footer>
+        <p>Created by Julian Winking</p>
+        <p><a href="https://github.com/julianwinking/pid-demo" target="_blank">Source Code</a></p>
+    </footer>
 
-  <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
+    
 </body>
 </html>

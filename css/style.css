@@ -1,22 +1,70 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    padding: 10px 50px;
+    background-color: #f1f1f1;
+    text-align: left;
+}
+
+footer {
+    padding: 15px;
+    background-color: #ffffff;
     text-align: center;
-    margin: 20px;
-  }
-  
-  canvas {
-    border: 1px solid black;
-    margin-top: 20px;
-  }
-  
-  .controls {
+}
+
+footer p {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.left-column {
+    flex: 1;
+    padding: 20px;
+}
+
+.right-column {
+    flex: 1;
+    padding: 40px;
+}
+
+#canvas {
+    border: 2px solid rgb(221, 221, 221);
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 80%; /* Adjust the display size */
+    height: auto; /* Maintain aspect ratio */
+    justify-content: center;
+}
+
+#pid-chart {
+  margin-top: 30px;
+}
+
+.controls {
     margin: 20px 0;
-  }
-  
-  .controls label {
-    margin-right: 10px;
-  }
-  
-  .controls input {
-    margin-right: 20px;
-  }
+    padding: 40px;
+}
+
+.controls label {
+    display: block;
+    margin-top: 10px;
+}
+
+.controls input[type="range"] {
+    width: 100%;
+}
