@@ -14,10 +14,10 @@ jobs:
 
       - name: Clone Personal Website Repository
         run: |
-          git clone https://github.com/USERNAME/PERSONAL_WEBSITE_REPO.git website
+          git clone https://github.com/julianwinking/personal-website.git website
           cd website
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "julianwinking"
+          git config user.email "julian.winking@gmail.com"
           git submodule update --init --recursive
           git submodule update --remote --merge
 
