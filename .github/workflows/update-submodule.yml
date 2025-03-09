@@ -26,4 +26,4 @@ jobs:
           cd website
           git add .
           git commit -m "Update submodule to latest commit" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.PERSONAL_WEBSITE_PAT }}@github.com/USERNAME/PERSONAL_WEBSITE_REPO.git main
+          git push https://x-access-token:${{ secrets.PERSONAL_WEBSITE_PAT }}@github.com/julianwinking/personal-website.git main
