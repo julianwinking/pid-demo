@@ -1,0 +1,29 @@
+name: Update Submodule in Personal Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project Repository
+        uses: actions/checkout@v3
+
+      - name: Clone Personal Website Repository
+        run: |
+          git clone https://github.com/USERNAME/PERSONAL_WEBSITE_REPO.git website
+          cd website
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git submodule update --init --recursive
+          git submodule update --remote --merge
+
+      - name: Commit and Push Changes
+        run: |
+          cd website
+          git add .
+          git commit -m "Update submodule to latest commit" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.PERSONAL_WEBSITE_PAT }}@github.com/USERNAME/PERSONAL_WEBSITE_REPO.git main
