@@ -7,9 +7,40 @@ body {
 }
 
 header {
-    padding: 10px 50px;
-    background-color: #f1f1f1;
+    padding: 8px 50px;
+    background: linear-gradient(to right, #5686AF, #839CC6); /* Gradient background */
     text-align: left;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 40px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white; /* White text color */
+    font-weight: bold;
+    padding: 10px 20px; /* Padding for button-like appearance */
+    border-radius: 10px; /* Rounded corners */
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly darker on hover */
 }
 
 footer {
@@ -23,24 +54,75 @@ footer p {
     margin: 0 10px;
 }
 
+.main-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar {
+    width: 95px; /* Set a consistent width */
+    border: 2px;
+    border-color: #ff0000;
+    color: black;
+    padding: 15px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sub-sidebar {
+    padding: 20px;
+    border-right: 2px solid #ccc;
+}
+
+#model1-sidebar {
+    width: 500px;
+}
+
+#deepdive-sidebar {
+    width: 200px;
+}
+
+.sub-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sub-sidebar ul li {
+    margin: 10px 0;
+}
+
+.sub-sidebar label {
+    display: block;
+    margin-top: 10px;
+}
+
+.sub-sidebar input[type="range"] {
+    width: 100%;
+}
+
+#reset-button {
+    margin-top: 20px;
+}
+
 .container {
     display: flex;
     flex: 1;
-    width: 100%;
     padding: 20px;
     box-sizing: border-box;
     align-items: center;
+    background-color: #f3f3f3;
 }
 
-.left-column {
-    flex: 1;
-    padding: 20px;
-}
-
-.right-column {
-    flex: 1;
-    padding: 40px;
-    display: flex;
+#simulation-container {
+    padding: 0 15%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -52,26 +134,94 @@ footer p {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     width: 80%; /* Adjust the display size */
     height: auto; /* Maintain aspect ratio */
+    background-color: white;
 }
 
 #pid-chart {
-  margin-top: 60px;
+    margin-top: 60px;
 }
 
-.controls {
-    margin: 20px 0;
-    padding: 40px;
+.deepdive {
+    display: flex;
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    display: none; /* Initially hidden */
 }
 
-.controls label {
-    display: block;
-    margin-top: 10px;
+#deepdive-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Center to the left side */
+    padding: 20px 50px;
 }
 
-.controls input[type="range"] {
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* Adjust width as needed */
+    height: 100%; /* Adjust height as needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%; /* Adjust width as needed */
+    height: 80%; /* Adjust height as needed */
+    position: relative; /* For positioning the close button */
+    justify-content: center;
+    align-items: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px; /* Increase distance from top */
+    right: 20px; /* Increase distance from right */
+    cursor: pointer;
+    font-size: 2em; /* Increase font size */
+    color: #333; /* Darker color */
+}
+
+#model1 {
     width: 100%;
 }
 
-#reset-button {
-    margin-top: 20px;
+#deepdive {
+    display: none;
+    width: 100%;
+}
+
+.menu-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.menu-item svg {
+    width: 24px;
+    height: 30px;
+    margin-bottom: 8px;
+}
+
+.menu-item:hover {
+    background-color: rgba(86, 134, 175, 0.2); /* Lighter hover effect */
+}
+
+.menu-item:active {
+    background-color: rgba(86, 134, 175, 0.4); /* Darker active effect */
 }

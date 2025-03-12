@@ -4,72 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PID Controller Demo</title>
+    <meta name="description" content="Explore the fundamentals of PID controllers with interactive simulations and deep dive into control systems concepts.">
+    <meta name="keywords" content="PID controller, control systems, interactive simulation, deep dive, control theory, engineering, tutorial">
+    <meta name="author" content="Julian Winking">
     <link rel="stylesheet" href="css/style.css">
+    <meta property="og:url" content="https://winki.ng/projects/pid-demo/"/>
+    <meta property="og:type" content="website"/>
 </head>
 <body>
     <header>
         <h1>PID Controller Demo</h1>
+        <nav>
+            <ul>
+                <li><a href="https://github.com/julianwinking/pid-demo" target="_blank">Source Code</a></li>
+                <li><a href="mailto:julian.winking@gmail.com?subject=Feedback%20PID%20Demo&body=Hi%20Julian,">Feedback</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="container">
-
-        <div class="left-column">
-            <div class="controls">
+    <div class="main-container">
+        <div class="sidebar">
+            <ul>
+                <li id="tutorial-btn" class="menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Question"><circle cx="12" cy="12" r="10"/><path d="M10 8.484C10.5 7.494 11 7 12 7c1.246 0 2 .989 2 1.978s-.5 1.483-2 2.473V13m0 3.5v.5"/></svg>
+                    Tutorial
+                </li>                
+                <li id="model1-btn" class="menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Circle"><circle cx="12" cy="12" r="10"/></svg>
+                    Model 1
+                </li>
+                <li id="deepdive-btn" class="menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-BookOpen"><path d="M2 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/><path d="M12 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/></svg>
+                    Deep Dive
+                </li>
+            </ul>
+        </div>
+        <div id="model1" style="display: flex;">
+            <div id="model1-sidebar" class="sub-sidebar">
                 <h2>Controls</h2>
                 <h3>Controller</h3>
-                    <label for="kp">Kp:</label>
-                    <input type="range" id="kp" min="0" max="10" step="0.1" value="1.0">
-                    <span id="kp-value">1.0</span>
-                    <br>
-                    <label for="ki">Ki:</label>
-                    <input type="range" id="ki" min="0" max="10" step="0.1" value="0.1">
-                    <span id="ki-value">0.1</span>
-                    <br>
-                    <label for="kd">Kd:</label>
-                    <input type="range" id="kd" min="0" max="10" step="0.1" value="0.01">
-                    <span id="kd-value">0.01</span>
-                    <br>
+                <label for="kp">Kp:</label>
+                <input type="range" id="kp" min="0" max="10" step="0.1" value="1.0">
+                <span id="kp-value">1.0</span>
+                <br>
+                <label for="ki">Ki:</label>
+                <input type="range" id="ki" min="0" max="10" step="0.1" value="0.1">
+                <span id="ki-value">0.1</span>
+                <br>
+                <label for="kd">Kd:</label>
+                <input type="range" id="kd" min="0" max="10" step="0.1" value="0.01">
+                <span id="kd-value">0.01</span>
+                <br>
                 <h3>Object</h3>
-                    <label for="object">Mass:</label>
-                    <input type="range" id="mass" min="1" max="20" step="0.1" value="5">
-                    <span id="mass-value">5</span>
-                    <br>
+                <label for="object">Mass:</label>
+                <input type="range" id="mass" min="1" max="20" step="0.1" value="5">
+                <span id="mass-value">5</span>
+                <br>
                 <h3>Target</h3>
-                    <label for="target">Target:</label>
-                    <input type="range" id="target" min="0" max="800" step="1" value="400">
-                    <span id="target-value">400</span>
-                    <br>
-                    <label for="amplitude">Amplitude:</label>
-                    <input type="range" id="amplitude" min="0" max="100" step="1" value="0">
-                    <span id="amplitude-value">0</span>
-                    <br>
-                    <label for="frequency">Frequency:</label>
-                    <input type="range" id="frequency" min="0" max="1.5" step="0.1" value="0">
-                    <span id="frequency-value">0</span>
-                    <br>
+                <label for="target">Target:</label>
+                <input type="range" id="target" min="0" max="800" step="1" value="400">
+                <span id="target-value">400</span>
+                <br>
+                <label for="amplitude">Amplitude:</label>
+                <input type="range" id="amplitude" min="0" max="100" step="1" value="50">
+                <span id="amplitude-value">0</span>
+                <br>
+                <label for="frequency">Frequency:</label>
+                <input type="range" id="frequency" min="0" max="1.5" step="0.05" value="0.1">
+                <span id="frequency-value">0.1</span>
+                <br>
                 <h3>Noise</h3>
-                    <label for="noise">Noise:</label>
-                    <input type="range" id="noise" min="0" max="10" step="0.1" value="0">
-                    <span id="noise-value">0</span>
-                    <br>
+                <label for="noise">Noise:</label>
+                <input type="range" id="noise" min="0" max="10" step="0.1" value="0">
+                <span id="noise-value">0</span>
+                <br>
                 <button id="reset-button">Reset</button>
+                <button id="toggle-chart-button">Toggle PID Chart</button>
+            </div>
+            <div id="simulation-container" class="container">
+                <canvas id="canvas" width="800" height="500"></canvas>
+                <canvas id="pid-chart" width="800" height="200"></canvas>
             </div>
         </div>
 
-        <div class="right-column">
-            <canvas id="canvas" width="800" height="500"></canvas>
-            <canvas id="pid-chart" width="800" height="200"></canvas>
+        <div id="deepdive" style="display: none;">
+            <div id="deepdive-sidebar" class="sub-sidebar">
+                <h2>Deep Dive</h2>
+                <ul>
+                    <li id="introduction-btn">Introduction</li>
+                    <li id="controllers-btn">Controllers</li>
+                </ul>
+            </div>
+            <div id="deepdive-container" class="container">
+                <div id="introduction-section">
+                    <h2>Introduction to Control Systems</h2>
+                    <p>Control systems are used to manage, command, direct, or regulate the behavior of other devices or systems using control loops. They are essential in industrial automation, robotics, and many other fields.</p>
+                    <p>In this section, we will explore the basic concepts of control systems, including open-loop and closed-loop control, feedback mechanisms, and the importance of stability and accuracy in control systems.</p>
+                </div>
+                <div id="controllers-section" style="display: none;">
+                    <h2>Types of Controllers</h2>
+                    <p>Controllers are devices that manage the behavior of other devices or systems. There are several types of controllers used in control systems, each with its own advantages and applications:</p>
+                    <ul>
+                        <li><strong>Proportional (P) Controller:</strong> A P controller adjusts the control signal in proportion to the error. It is simple but may not eliminate steady-state error.</li>
+                        <li><strong>Integral (I) Controller:</strong> An I controller integrates the error over time, which helps eliminate steady-state error but may introduce oscillations.</li>
+                        <li><strong>Derivative (D) Controller:</strong> A D controller responds to the rate of change of the error, providing damping and improving stability.</li>
+                        <li><strong>Proportional-Integral-Derivative (PID) Controller:</strong> A PID controller combines the P, I, and D controllers to provide a balanced approach, offering fast response, minimal steady-state error, and good stability.</li>
+                    </ul>
+                    <p>In this section, we will delve deeper into each type of controller, their mathematical representations, and their practical applications.</p>
+                </div>
+            </div>
         </div>
-
     </div>
 
-    <footer>
-        <p>Created by Julian Winking</p>
-        <p><a href="https://github.com/julianwinking/pid-demo" target="_blank">Source Code</a></p>
-    </footer>
+    <div id="tutorial-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <h2>Tutorial</h2><br>
+            <p>This is a tutorial popup.</p>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/main.js"></script>
-    
+    <script src="js/pid-controller.js"></script>
 </body>
 </html>
