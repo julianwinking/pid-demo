@@ -85,7 +85,10 @@ nav ul li a:hover {
 }
 
 #deepdive-sidebar {
-    width: 200px;
+    width: 300px;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 #model2-sidebar {
@@ -193,10 +196,36 @@ nav ul li a:hover {
 }
 
 #deepdive-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Center to the left side */
-    padding: 20px 50px;
+    flex: 1;
+    padding: 20px 40px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack content vertically */
+    align-items: flex-start; /* Align content to the left */
+    justify-content: flex-start; /* Align content to the top */
+}
+
+#deepdive-navigation {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#deepdive-navigation li {
+    margin: 10px 0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#deepdive-navigation li:hover {
+    background-color: #e9ecef;
+}
+
+#deepdive-navigation li.active {
+    font-weight: bold;
+    background-color: #e9ecef; /* Light background for active item */
+    border-radius: 5px; /* Rounded corners for better visibility */
 }
 
 .popup {
@@ -247,6 +276,26 @@ nav ul li a:hover {
     width: 100%;
 }
 
+#source-code-btn {
+    margin-top: 60px;
+}
+
+#source-code-btn a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+    display: flex; /* Ensure the link behaves like a flex container */
+    align-items: center; /* Align content vertically */
+    width: 100%; /* Make the link cover the full width of the button */
+}
+
+#source-code-btn:hover {
+    background-color: #f0f0f0; /* Add hover effect for the entire button */
+}
+
+#source-code-btn a:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
 .menu-item {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -278,21 +327,16 @@ nav ul li a:hover {
 
 /* Ensure links inside menu items also use the link cursor */
 .menu-item a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer; /* Use link cursor */
-    display: flex;
-    align-items: center;
-    width: 100%; /* Ensure full width for centering */
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+    display: flex; /* Ensure the link behaves like a flex container */
+    align-items: center; /* Align content vertically */
+    width: 100%; /* Make the link cover the full width of the button */
 }
 
 .footer {
     margin-top: auto;
     text-align: left;
-}
-
-#source-code-btn{
-    margin-top: 60px;
 }
 
 .clickable {
@@ -431,6 +475,7 @@ input[type="range"]:disabled {
 }
 
 #analytics-container {
+    margin-top: 30px;
     display: flex; /* Setze die Diagramme nebeneinander */
     gap: 20px; /* Abstand zwischen den Diagrammen */
     justify-content: space-between; /* Verteile die Diagramme gleichmäßig */
@@ -440,4 +485,25 @@ input[type="range"]:disabled {
 #nyquist-plot, #bode-plot {
     flex: 1; /* Beide Diagramme nehmen gleich viel Platz ein */
     height: 500px; /* Einheitliche Höhe */
+}
+
+.info-link {
+    margin-left: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #b7b7b7;
+    transition: color 0.3s;
+    margin-bottom: -15px;
+    text-decoration: none; /* Remove underline */
+}
+
+.info-link:hover {
+    color: #a7a7a7;
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+.label-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between label and info icon */
 }

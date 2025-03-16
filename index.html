@@ -35,7 +35,6 @@
                 </li>
                 <li id="source-code-btn" class="menu-item">
                     <a href="https://github.com/julianwinking/pid-demo" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-BookOpen"><path d="M2 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/><path d="M12 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/></svg>
                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Code"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
                         Source Code
                     </a>
@@ -53,24 +52,39 @@
         </div>
         <div id="model1" style="display: flex;">
             <div id="model1-sidebar" class="sub-sidebar">
-                <h2>Controls</h2>
+                <h2>Model 1 Controls</h2>
                 <h3>Controller</h3>
                 <div>
-                    <label for="kp">Kp:</label>
+                    <div class="label-container">
+                        <label for="kp">Kp:</label>
+                        <a href="#" class="info-link" data-target="kp-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="kp" min="0" max="10" step="0.1" value="1.0">
                         <span id="kp-value" class="slider-value">1.0</span>
                     </div>
                 </div>
                 <div>
-                    <label for="ki">Ki:</label>
+                    <div class="label-container">
+                        <label for="ki">Ki:</label>
+                        <a href="#" class="info-link" data-target="ki-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="ki" min="0" max="10" step="0.1" value="0.1">
                         <span id="ki-value" class="slider-value">0.1</span>
                     </div>
                 </div>
                 <div>
-                    <label for="kd">Kd:</label>
+                    <div class="label-container">
+                        <label for="kd">Kd:</label>
+                        <a href="#" class="info-link" data-target="kd-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="kd" min="0" max="10" step="0.1" value="0.01">
                         <span id="kd-value" class="slider-value">0.01</span>
@@ -78,7 +92,12 @@
                 </div>
                 <h3>Object</h3>
                 <div>
-                    <label for="object">Mass:</label>
+                    <div class="label-container">
+                        <label for="mass">Mass:</label>
+                        <a href="#" class="info-link" data-target="mass-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="mass" min="1" max="20" step="0.1" value="5">
                         <span id="mass-value" class="slider-value">5</span>
@@ -86,21 +105,36 @@
                 </div>
                 <h3>Target</h3>
                 <div>
-                    <label for="target">Target:</label>
+                    <div class="label-container">
+                        <label for="target">Target:</label>
+                        <a href="#" class="info-link" data-target="target-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="target" min="0" max="800" step="1" value="400">
                         <span id="target-value" class="slider-value">400</span>
                     </div>
                 </div>
                 <div>
-                    <label for="amplitude">Amplitude:</label>
+                    <div class="label-container">
+                        <label for="amplitude">Amplitude:</label>
+                        <a href="#" class="info-link" data-target="amplitude-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="amplitude" min="0" max="100" step="1" value="50">
                         <span id="amplitude-value" class="slider-value">50</span>
                     </div>
                 </div>
                 <div>
-                    <label for="frequency">Frequency:</label>
+                    <div class="label-container">
+                        <label for="frequency">Frequency:</label>
+                        <a href="#" class="info-link" data-target="frequency-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="frequency" min="0" max="1.5" step="0.05" value="0.1">
                         <span id="frequency-value" class="slider-value">0.1</span>
@@ -108,7 +142,12 @@
                 </div>
                 <h3>Noise</h3>
                 <div>
-                    <label for="noise">Noise:</label>
+                    <div class="label-container">
+                        <label for="noise">Noise:</label>
+                        <a href="#" class="info-link" data-target="noise-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="noise" min="0" max="10" step="0.1" value="0">
                         <span id="noise-value" class="slider-value">0</span>
@@ -118,7 +157,7 @@
             </div>
             <div id="simulation-container" class="container">
                 <canvas id="canvas" width="800" height="500"></canvas>
-                <canvas id="pid-chart" width="800" height="250"></canvas>
+                <canvas id="pid-chart" width="800" height="200"></canvas>
                 <div id="analytics-container">
                     <div id="nyquist-plot" style="width: 100%; height: 300px;"></div> <!-- Ortskurve -->
                     <div id="bode-plot" style="width: 100%; height: 300px;"></div> <!-- Bode-Diagramm -->
@@ -128,24 +167,39 @@
 
         <div id="model2" style="display: none;">
             <div id="model2-sidebar" class="sub-sidebar">
-                <h2>Controls</h2>
+                <h2>Model 2 Controls</h2>
                 <h3>Controller</h3>
                 <div>
-                    <label for="kp2">Kp:</label>
+                    <div class="label-container">
+                        <label for="kp2">Kp:</label>
+                        <a href="#" class="info-link" data-target="kp-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="kp2" min="0" max="10" step="0.1" value="1.0">
                         <span id="kp2-value" class="slider-value">1.0</span>
                     </div>
                 </div>
                 <div>
-                    <label for="ki2">Ki:</label>
+                    <div class="label-container">
+                        <label for="ki2">Ki:</label>
+                        <a href="#" class="info-link" data-target="ki-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="ki2" min="0" max="10" step="0.1" value="0.1">
                         <span id="ki2-value" class="slider-value">0.1</span>
                     </div>
                 </div>
                 <div>
-                    <label for="kd2">Kd:</label>
+                    <div class="label-container">
+                        <label for="kd2">Kd:</label>
+                        <a href="#" class="info-link" data-target="kd-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
+                        </a>
+                    </div>
                     <div class="slider-container">
                         <input type="range" id="kd2" min="0" max="10" step="0.1" value="0.01">
                         <span id="kd2-value" class="slider-value">0.01</span>
@@ -154,6 +208,7 @@
                 <button id="reset-button">Reset</button>
             </div>
             <div id="simulation-container" class="container">
+                <h2>Model 2 is coming soon</h2>
                 <canvas id="canvas2" width="800" height="500"></canvas>
                 <canvas id="pid-chart2" width="800" height="250"></canvas>
             </div>
@@ -161,28 +216,75 @@
 
         <div id="deepdive" style="display: none;">
             <div id="deepdive-sidebar" class="sub-sidebar">
-                <h2>Deep Dive</h2>
-                <ul>
-                    <li id="introduction-btn" class="clickable">Introduction</li>
-                    <li id="controllers-btn" class="clickable">Controllers</li>
+                <h2>Knowledge Wiki</h2>
+                <ul id="deepdive-navigation">
+                    <li class="clickable" data-target="introduction-section">Introduction</li>
+                    <li class="clickable" data-target="controllers-section">Controllers</li>
+                    <li class="clickable" data-target="kp-info">Proportional Gain (Kp)</li>
+                    <li class="clickable" data-target="ki-info">Integral Gain (Ki)</li>
+                    <li class="clickable" data-target="kd-info">Derivative Gain (Kd)</li>
+                    <li class="clickable" data-target="mass-info">Mass</li>
+                    <li class="clickable" data-target="target-info">Target</li>
+                    <li class="clickable" data-target="amplitude-info">Amplitude</li>
+                    <li class="clickable" data-target="frequency-info">Frequency</li>
+                    <li class="clickable" data-target="noise-info">Noise</li>
+                    <li class="clickable" data-target="nyquist-info">Nyquist Plot</li>
+                    <li class="clickable" data-target="bode-info">Bode Plot</li>
+                    <li class="clickable" data-target="stability-info">Stability</li>
                 </ul>
             </div>
             <div id="deepdive-container" class="container">
-                <div id="introduction-section">
+                <div id="introduction-section" style="display: none;">
                     <h2>Introduction to Control Systems</h2>
-                    <p>Control systems are used to manage, command, direct, or regulate the behavior of other devices or systems using control loops. They are essential in industrial automation, robotics, and many other fields.</p>
-                    <p>In this section, we will explore the basic concepts of control systems, including open-loop and closed-loop control, feedback mechanisms, and the importance of stability and accuracy in control systems.</p>
+                    <p>Control systems are used to manage, command, direct, or regulate the behavior of other devices or systems using control loops...</p>
                 </div>
                 <div id="controllers-section" style="display: none;">
                     <h2>Types of Controllers</h2>
-                    <p>Controllers are devices that manage the behavior of other devices or systems. There are several types of controllers used in control systems, each with its own advantages and applications:</p>
-                    <ul>
-                        <li><strong>Proportional (P) Controller:</strong> A P controller adjusts the control signal in proportion to the error. It is simple but may not eliminate steady-state error.</li>
-                        <li><strong>Integral (I) Controller:</strong> An I controller integrates the error over time, which helps eliminate steady-state error but may introduce oscillations.</li>
-                        <li><strong>Derivative (D) Controller:</strong> A D controller responds to the rate of change of the error, providing damping and improving stability.</li>
-                        <li><strong>Proportional-Integral-Derivative (PID) Controller:</strong> A PID controller combines the P, I, and D controllers to provide a balanced approach, offering fast response, minimal steady-state error, and good stability.</li>
-                    </ul>
-                    <p>In this section, we will delve deeper into each type of controller, their mathematical representations, and their practical applications.</p>
+                    <p>Controllers are devices that manage the behavior of other devices or systems...</p>
+                </div>
+                <div id="kp-info" style="display: none;">
+                    <h2>Proportional Gain (Kp)</h2>
+                    <p>The proportional gain (Kp) determines how strongly the controller reacts to the current error...</p>
+                </div>
+                <div id="ki-info" style="display: none;">
+                    <h2>Integral Gain (Ki)</h2>
+                    <p>The integral gain (Ki) accumulates the error over time, helping to eliminate steady-state error...</p>
+                </div>
+                <div id="kd-info" style="display: none;">
+                    <h2>Derivative Gain (Kd)</h2>
+                    <p>The derivative gain (Kd) predicts future error based on its rate of change...</p>
+                </div>
+                <div id="mass-info" style="display: none;">
+                    <h2>Mass</h2>
+                    <p>The mass parameter represents the object's mass in the simulation...</p>
+                </div>
+                <div id="target-info" style="display: none;">
+                    <h2>Target</h2>
+                    <p>The target parameter defines the desired setpoint for the system...</p>
+                </div>
+                <div id="amplitude-info" style="display: none;">
+                    <h2>Amplitude</h2>
+                    <p>The amplitude parameter determines the magnitude of oscillations or disturbances applied to the system...</p>
+                </div>
+                <div id="frequency-info" style="display: none;">
+                    <h2>Frequency</h2>
+                    <p>The frequency parameter specifies the rate of oscillations or disturbances applied to the system...</p>
+                </div>
+                <div id="noise-info" style="display: none;">
+                    <h2>Noise</h2>
+                    <p>The noise parameter adds random variations to the system, simulating real-world disturbances...</p>
+                </div>
+                <div id="nyquist-info" style="display: none;">
+                    <h2>Nyquist Plot</h2>
+                    <p>The Nyquist plot is a graphical representation of a system's frequency response. It is used to assess the stability of a control system by analyzing the encirclement of the critical point (-1, 0) in the complex plane.</p>
+                </div>
+                <div id="bode-info" style="display: none;">
+                    <h2>Bode Plot</h2>
+                    <p>The Bode plot is a graphical representation of a system's frequency response. It consists of two plots: magnitude (in dB) versus frequency and phase (in degrees) versus frequency, both on a logarithmic scale.</p>
+                </div>
+                <div id="stability-info" style="display: none;">
+                    <h2>Stability</h2>
+                    <p>Stability in control systems refers to the ability of a system to return to equilibrium after a disturbance. Stability analysis ensures that the system behaves predictably and does not exhibit unbounded oscillations.</p>
                 </div>
             </div>
         </div>

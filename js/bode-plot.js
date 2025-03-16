@@ -110,9 +110,9 @@ const nyquistTrace = {
 
 // Layout für das Diagramm
 const layout = {
-    title: "Bode-Diagramm des PID-Reglers",
+    title: "Bode Plot",
     xaxis: {
-        title: "Frequenz (rad/s)",
+        title: "Frequency (rad/s)",
         type: "log",
     },
     yaxis: {
@@ -123,19 +123,25 @@ const layout = {
         overlaying: "y",
         side: "right",
     },
-    legend: { x: 0.1, y: 1.1 },
+    legend: { x: 0.5, y: -0.3, orientation: "h" }, // Move legend below the chart
+    plot_bgcolor: "#f3f3f3", // Match simulation container background
+    paper_bgcolor: "#f3f3f3", // Match simulation container background
+    margin: { l: 50, r: 50, t: 50, b: 50 }, // Adjust margins to prevent overlap
 };
 
 // Layout für die Ortskurve
 const nyquistLayout = {
-    title: "Ortskurve (Nyquist-Diagramm) des PID-Reglers",
+    title: "Nyquist Plot",
     xaxis: {
-        title: "Realteil",
+        title: "Real Part",
     },
     yaxis: {
-        title: "Imaginärteil",
+        title: "Imaginary Part",
     },
-    legend: { x: 0.1, y: 1.1 },
+    legend: { x: 0.5, y: -0.3, orientation: "h" }, // Move legend below the chart
+    plot_bgcolor: "#f3f3f3", // Match simulation container background
+    paper_bgcolor: "#f3f3f3", // Match simulation container background
+    margin: { l: 50, r: 50, t: 50, b: 50 }, // Adjust margins to prevent overlap
 };
 
 // Diagramm rendern
@@ -204,9 +210,9 @@ function updatePlots(Kp, Ki, Kd, currentFrequency) {
 
     // Layouts
     const bodeLayout = {
-        title: "Bode-Diagramm des PID-Reglers",
+        title: "Bode Plot",
         xaxis: {
-            title: "Frequenz (rad/s)",
+            title: "Frequency (rad/s)",
             type: "log",
         },
         yaxis: {
@@ -217,18 +223,24 @@ function updatePlots(Kp, Ki, Kd, currentFrequency) {
             overlaying: "y",
             side: "right",
         },
-        legend: { x: 0.1, y: 1.1 },
+        legend: { x: 0.5, y: -0.3, orientation: "h" }, // Move legend below the chart
+        plot_bgcolor: "#f3f3f3", // Match simulation container background
+        paper_bgcolor: "#f3f3f3", // Match simulation container background
+        margin: { l: 50, r: 50, t: 50, b: 50 }, // Adjust margins to prevent overlap
     };
 
     const nyquistLayout = {
-        title: "Ortskurve (Nyquist-Diagramm) des PID-Reglers",
+        title: "Nyquist Plot",
         xaxis: {
-            title: "Realteil",
+            title: "Real Part",
         },
         yaxis: {
-            title: "Imaginärteil",
+            title: "Imaginary Part",
         },
-        legend: { x: 0.1, y: 1.1 },
+        legend: { x: 0.5, y: -0.3, orientation: "h" }, // Move legend below the chart
+        plot_bgcolor: "#f3f3f3", // Match simulation container background
+        paper_bgcolor: "#f3f3f3", // Match simulation container background
+        margin: { l: 50, r: 50, t: 50, b: 50 }, // Adjust margins to prevent overlap
     };
 
     // Plots aktualisieren
