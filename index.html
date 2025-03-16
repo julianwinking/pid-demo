@@ -12,78 +12,150 @@
     <meta property="og:type" content="website"/>
 </head>
 <body>
-    <header>
-        <h1>PID Controller Demo</h1>
-        <nav>
-            <ul>
-                <li><a href="https://github.com/julianwinking/pid-demo" target="_blank">Source Code</a></li>
-                <li><a href="mailto:julian.winking@gmail.com?subject=Feedback%20PID%20Demo&body=Hi%20Julian,">Feedback</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <div class="main-container">
         <div class="sidebar">
+            <h1>PID Controller Demo</h1>
+            <p>Welcome to the PID Controller Demo! Dive into the world of control systems and explore how PID controllers work through interactive simulations. I built the tool the way it would have helped me understand control theory.</p>
             <ul>
                 <li id="tutorial-btn" class="menu-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Question"><circle cx="12" cy="12" r="10"/><path d="M10 8.484C10.5 7.494 11 7 12 7c1.246 0 2 .989 2 1.978s-.5 1.483-2 2.473V13m0 3.5v.5"/></svg>
                     Tutorial
                 </li>                
-                <li id="model1-btn" class="menu-item">
+                <li id="model1-btn" class="menu-item active">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Circle"><circle cx="12" cy="12" r="10"/></svg>
                     Model 1
+                </li>
+                <li id="model2-btn" class="menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-TriangleUp"><path d="M12 7l-6 8h12l-6-8z"/></svg>
+                    Model 2
                 </li>
                 <li id="deepdive-btn" class="menu-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-BookOpen"><path d="M2 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/><path d="M12 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/></svg>
                     Deep Dive
                 </li>
+                <li id="source-code-btn" class="menu-item">
+                    <a href="https://github.com/julianwinking/pid-demo" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-BookOpen"><path d="M2 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/><path d="M12 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Code"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+                        Source Code
+                    </a>
+                </li>
+                <li id="feedback-btn" class="menu-item">
+                    <a href="mailto:julian.winking@gmail.com?subject=Feedback%20PID%20Demo&body=Hi%20Julian,">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Envelope"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6z"/><path d="M2 8l7.501 6.001a4 4 0 0 0 4.998 0L22 8"/></svg>
+                        Feedback
+                    </a>
+                </li>
             </ul>
+            <div class="footer">
+                <p>&copy; 2025 Julian Winking</p>
+            </div>
         </div>
         <div id="model1" style="display: flex;">
             <div id="model1-sidebar" class="sub-sidebar">
                 <h2>Controls</h2>
                 <h3>Controller</h3>
-                <label for="kp">Kp:</label>
-                <input type="range" id="kp" min="0" max="10" step="0.1" value="1.0">
-                <span id="kp-value">1.0</span>
-                <br>
-                <label for="ki">Ki:</label>
-                <input type="range" id="ki" min="0" max="10" step="0.1" value="0.1">
-                <span id="ki-value">0.1</span>
-                <br>
-                <label for="kd">Kd:</label>
-                <input type="range" id="kd" min="0" max="10" step="0.1" value="0.01">
-                <span id="kd-value">0.01</span>
-                <br>
+                <div>
+                    <label for="kp">Kp:</label>
+                    <div class="slider-container">
+                        <input type="range" id="kp" min="0" max="10" step="0.1" value="1.0">
+                        <span id="kp-value" class="slider-value">1.0</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="ki">Ki:</label>
+                    <div class="slider-container">
+                        <input type="range" id="ki" min="0" max="10" step="0.1" value="0.1">
+                        <span id="ki-value" class="slider-value">0.1</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="kd">Kd:</label>
+                    <div class="slider-container">
+                        <input type="range" id="kd" min="0" max="10" step="0.1" value="0.01">
+                        <span id="kd-value" class="slider-value">0.01</span>
+                    </div>
+                </div>
                 <h3>Object</h3>
-                <label for="object">Mass:</label>
-                <input type="range" id="mass" min="1" max="20" step="0.1" value="5">
-                <span id="mass-value">5</span>
-                <br>
+                <div>
+                    <label for="object">Mass:</label>
+                    <div class="slider-container">
+                        <input type="range" id="mass" min="1" max="20" step="0.1" value="5">
+                        <span id="mass-value" class="slider-value">5</span>
+                    </div>
+                </div>
                 <h3>Target</h3>
-                <label for="target">Target:</label>
-                <input type="range" id="target" min="0" max="800" step="1" value="400">
-                <span id="target-value">400</span>
-                <br>
-                <label for="amplitude">Amplitude:</label>
-                <input type="range" id="amplitude" min="0" max="100" step="1" value="50">
-                <span id="amplitude-value">0</span>
-                <br>
-                <label for="frequency">Frequency:</label>
-                <input type="range" id="frequency" min="0" max="1.5" step="0.05" value="0.1">
-                <span id="frequency-value">0.1</span>
-                <br>
+                <div>
+                    <label for="target">Target:</label>
+                    <div class="slider-container">
+                        <input type="range" id="target" min="0" max="800" step="1" value="400">
+                        <span id="target-value" class="slider-value">400</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="amplitude">Amplitude:</label>
+                    <div class="slider-container">
+                        <input type="range" id="amplitude" min="0" max="100" step="1" value="50">
+                        <span id="amplitude-value" class="slider-value">50</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="frequency">Frequency:</label>
+                    <div class="slider-container">
+                        <input type="range" id="frequency" min="0" max="1.5" step="0.05" value="0.1">
+                        <span id="frequency-value" class="slider-value">0.1</span>
+                    </div>
+                </div>
                 <h3>Noise</h3>
-                <label for="noise">Noise:</label>
-                <input type="range" id="noise" min="0" max="10" step="0.1" value="0">
-                <span id="noise-value">0</span>
-                <br>
+                <div>
+                    <label for="noise">Noise:</label>
+                    <div class="slider-container">
+                        <input type="range" id="noise" min="0" max="10" step="0.1" value="0">
+                        <span id="noise-value" class="slider-value">0</span>
+                    </div>
+                </div>
                 <button id="reset-button">Reset</button>
-                <button id="toggle-chart-button">Toggle PID Chart</button>
             </div>
             <div id="simulation-container" class="container">
                 <canvas id="canvas" width="800" height="500"></canvas>
-                <canvas id="pid-chart" width="800" height="200"></canvas>
+                <canvas id="pid-chart" width="800" height="250"></canvas>
+                <div id="analytics-container">
+                    <div id="nyquist-plot" style="width: 100%; height: 300px;"></div> <!-- Ortskurve -->
+                    <div id="bode-plot" style="width: 100%; height: 300px;"></div> <!-- Bode-Diagramm -->
+                </div>
+            </div>
+        </div>
+
+        <div id="model2" style="display: none;">
+            <div id="model2-sidebar" class="sub-sidebar">
+                <h2>Controls</h2>
+                <h3>Controller</h3>
+                <div>
+                    <label for="kp2">Kp:</label>
+                    <div class="slider-container">
+                        <input type="range" id="kp2" min="0" max="10" step="0.1" value="1.0">
+                        <span id="kp2-value" class="slider-value">1.0</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="ki2">Ki:</label>
+                    <div class="slider-container">
+                        <input type="range" id="ki2" min="0" max="10" step="0.1" value="0.1">
+                        <span id="ki2-value" class="slider-value">0.1</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="kd2">Kd:</label>
+                    <div class="slider-container">
+                        <input type="range" id="kd2" min="0" max="10" step="0.1" value="0.01">
+                        <span id="kd2-value" class="slider-value">0.01</span>
+                    </div>
+                </div>
+                <button id="reset-button">Reset</button>
+            </div>
+            <div id="simulation-container" class="container">
+                <canvas id="canvas2" width="800" height="500"></canvas>
+                <canvas id="pid-chart2" width="800" height="250"></canvas>
             </div>
         </div>
 
@@ -91,8 +163,8 @@
             <div id="deepdive-sidebar" class="sub-sidebar">
                 <h2>Deep Dive</h2>
                 <ul>
-                    <li id="introduction-btn">Introduction</li>
-                    <li id="controllers-btn">Controllers</li>
+                    <li id="introduction-btn" class="clickable">Introduction</li>
+                    <li id="controllers-btn" class="clickable">Controllers</li>
                 </ul>
             </div>
             <div id="deepdive-container" class="container">
@@ -125,7 +197,11 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/pid-controller.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script> <!-- Aktualisierte Version -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjs/lib/browser/math.min.js"></script>
+    <script src="js/pid-controller-model1.js"></script>
+    <script src="js/pid-controller-model2.js"></script> <!-- Include Model 2 controller -->
+    <script src="js/bode-plot.js"></script>
+    <script src="js/main.js"></script> <!-- Ensure this is included last -->
 </body>
 </html>

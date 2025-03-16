@@ -1,24 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&display=swap');
+
+html, body {
+    height: 100%; /* Ensure full height for the viewport */
+    margin: 0; /* Remove default margin */
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Geist', Arial, sans-serif; /* Use Geist Sans as the primary font */
     margin: 0;
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-header {
-    padding: 8px 50px;
-    background: linear-gradient(to right, #5686AF, #839CC6); /* Gradient background */
-    text-align: left;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 nav ul {
     list-style-type: none;
-    margin: 0;
+    margin: 0px;
     padding: 0;
     display: flex;
     gap: 40px;
@@ -43,29 +40,30 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.3); /* Slightly darker on hover */
 }
 
-footer {
-    padding: 15px;
-    background-color: #ffffff;
-    text-align: center;
-}
-
-footer p {
-    display: inline-block;
-    margin: 0 10px;
-}
-
 .main-container {
     display: flex;
-    height: 100%;
+    height: 100%; /* Ensure it fills the viewport height */
     width: 100%;
 }
 
 .sidebar {
-    width: 95px; /* Set a consistent width */
-    border: 2px;
-    border-color: #ff0000;
+    width: 300px; /* Set a consistent width */
+    border-right: 1px solid #ccc;
     color: black;
-    padding: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Ensure children stack vertically */
+    justify-content: space-between; /* Push footer to the bottom */
+    height: 100%; /* Full height of the container */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.sidebar h1 {
+    font-size: 28px;
+}
+
+.sidebar p {
+    color: #797979;
 }
 
 .sidebar ul {
@@ -79,7 +77,7 @@ footer p {
 
 .sub-sidebar {
     padding: 20px;
-    border-right: 2px solid #ccc;
+    border-right: 1px solid #ccc;
 }
 
 #model1-sidebar {
@@ -88,6 +86,10 @@ footer p {
 
 #deepdive-sidebar {
     width: 200px;
+}
+
+#model2-sidebar {
+    width: 500px; /* Match Model 1 sidebar width */
 }
 
 .sub-sidebar ul {
@@ -109,7 +111,28 @@ footer p {
 }
 
 #reset-button {
-    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+#reset-button:hover {
+    background-color: #f5c6cb; /* Slightly darker red on hover */
+}
+
+#reset-button:active {
+    background-color: #f1b0b7; /* Even darker red on active */
 }
 
 .container {
@@ -128,16 +151,36 @@ footer p {
     align-items: center;
 }
 
+#simulation-container2 {
+    padding: 0 15%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #canvas {
-    border: 2px solid rgb(221, 221, 221);
+    border: 1px solid rgb(221, 221, 221);
     border-radius: 15px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(100, 100, 111, 0.067) 0px 7px 29px 0px;
     width: 80%; /* Adjust the display size */
     height: auto; /* Maintain aspect ratio */
     background-color: white;
 }
 
+#canvas2 {
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.067) 0px 7px 29px 0px;
+    width: 80%; /* Match Model 1 canvas size */
+    height: auto; /* Maintain aspect ratio */
+    background-color: white;
+}
+
 #pid-chart {
+    margin-top: 60px;
+}
+
+#pid-chart2 {
     margin-top: 60px;
 }
 
@@ -194,6 +237,11 @@ footer p {
     width: 100%;
 }
 
+#model2 {
+    width: 100%;
+    display: none; /* Initially hidden */
+}
+
 #deepdive {
     display: none;
     width: 100%;
@@ -203,25 +251,193 @@ footer p {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    text-align: center;
+    text-align: left; /* Align text to the left */
     margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     font-size: 14px;
     transition: background-color 0.3s; /* Smooth transition */
+    background-color: white; /* Default background color */
+    cursor: pointer; /* Use link cursor on hover */
 }
 
 .menu-item svg {
     width: 24px;
-    height: 30px;
-    margin-bottom: 8px;
+    height: 24px;
+    margin-right: 15px; /* Space between icon and text */
 }
 
 .menu-item:hover {
-    background-color: rgba(86, 134, 175, 0.2); /* Lighter hover effect */
+    background-color: #f0f0f0; /* Gray hover effect */
 }
 
-.menu-item:active {
-    background-color: rgba(86, 134, 175, 0.4); /* Darker active effect */
+.menu-item:active, .menu-item.active {
+    background-color: #f0f0f0; /* Darker gray active effect */
+    font-weight: bold; /* Highlight active menu item */
+}
+
+/* Ensure links inside menu items also use the link cursor */
+.menu-item a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer; /* Use link cursor */
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure full width for centering */
+}
+
+.footer {
+    margin-top: auto;
+    text-align: left;
+}
+
+#source-code-btn{
+    margin-top: 60px;
+}
+
+.clickable {
+    cursor: pointer; /* Show pointer cursor to indicate clickability */
+    transition: background-color 0.3s; /* Smooth hover transition */
+    padding: 10px; /* Add consistent padding */
+    border-radius: 5px; /* Rounded corners */
+    text-align: left; /* Align text to the left */
+}
+
+.clickable:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+/* Slider styles */
+input[type="range"] {
+    --thumb-height: 1.125em;
+    --track-height: 0.125em;
+    --track-color: rgba(0, 0, 0, 0.2);
+    --thumb-color: #3a86ff; /* Blue color for the thumb */
+    --brightness-hover: 120%;
+    --brightness-down: 80%;
+    width: 100%;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    height: var(--thumb-height);
+    margin: 10px 0; /* Add consistent spacing */
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: var(--track-color);
+    height: var(--track-height);
+    border-radius: var(--track-height);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: var(--thumb-height);
+    height: var(--thumb-height);
+    background-color: var(--thumb-color);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: filter 0.2s ease;
+    margin-top: calc((var(--track-height) - var(--thumb-height)) / 2); /* Center the thumb vertically */
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+    filter: brightness(var(--brightness-hover));
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+    filter: brightness(var(--brightness-down));
+}
+
+input[type="range"]::-moz-range-track {
+    background: var(--track-color);
+    height: var(--track-height);
+    border-radius: var(--track-height);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: var(--thumb-height);
+    height: var(--thumb-height);
+    background-color: var(--thumb-color);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: filter 0.2s ease;
+    margin-top: calc((var(--track-height) - var(--thumb-height)) / 2); /* Center the thumb vertically */
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+    filter: brightness(var(--brightness-hover));
+}
+
+input[type="range"]:active::-moz-range-thumb {
+    filter: brightness(var(--brightness-down));
+}
+
+input[type="range"]::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+    height: var(--track-height);
+}
+
+input[type="range"]::-ms-fill-lower {
+    background: var(--track-color);
+    border-radius: var(--track-height);
+}
+
+input[type="range"]::-ms-fill-upper {
+    background: var(--track-color);
+    border-radius: var(--track-height);
+}
+
+input[type="range"]::-ms-thumb {
+    width: var(--thumb-height);
+    height: var(--thumb-height);
+    background-color: var(--thumb-color);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: filter 0.2s ease;
+    margin-top: calc((var(--track-height) - var(--thumb-height)) / 2); /* Center the thumb vertically */
+}
+
+input[type="range"]:hover::-ms-thumb {
+    filter: brightness(var(--brightness-hover));
+}
+
+input[type="range"]:active::-ms-thumb {
+    filter: brightness(var(--brightness-down));
+}
+
+/* Disabled slider styles */
+input[type="range"]:disabled {
+    filter: grayscale(1);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between slider and value */
+    flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.slider-value {
+    font-size: 14px; /* Adjust font size as needed */
+    color: #333; /* Text color */
+    width: 4ch; /* Fixed width for up to 4 digits and a decimal point */
+    text-align: right; /* Align text to the right */
+    display: inline-block; /* Ensure consistent box behavior */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+#analytics-container {
+    display: flex; /* Setze die Diagramme nebeneinander */
+    gap: 20px; /* Abstand zwischen den Diagrammen */
+    justify-content: space-between; /* Verteile die Diagramme gleichmäßig */
+    width: 100%;
+}
+
+#nyquist-plot, #bode-plot {
+    flex: 1; /* Beide Diagramme nehmen gleich viel Platz ein */
+    height: 500px; /* Einheitliche Höhe */
 }

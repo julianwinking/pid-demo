@@ -25,25 +25,29 @@ const dt = 0.1; // Time step
 
 // Data structure to hold chart values
 const chartData = {
-  labels: [],
-  pValues: [],
-  iValues: [],
-  dValues: []
+  labels: Array.from({ length: 200 }, (_, i) => (i * 0.1).toFixed(1)), // Times from 0 to 20s with 200 points
+  pValues: Array(200).fill(0), // 200 zeros
+  iValues: Array(200).fill(0), // 200 zeros
+  dValues: Array(200).fill(0)  // 200 zeros
 };
 
-// Chart.js setup
+// Chart.js setup with morph effect
 const pidChartCtx = document.getElementById('pid-chart').getContext('2d');
 const pidChart = new Chart(pidChartCtx, {
   type: 'line',
   data: {
     labels: chartData.labels,
     datasets: [
-      { label: 'P', data: chartData.pValues, borderColor: 'red', fill: false },
-      { label: 'I', data: chartData.iValues, borderColor: 'green', fill: false },
-      { label: 'D', data: chartData.dValues, borderColor: 'blue', fill: false }
+      { label: 'P', data: chartData.pValues, borderColor: 'red', fill: false, tension: 0.4 },
+      { label: 'I', data: chartData.iValues, borderColor: 'green', fill: false, tension: 0.4 },
+      { label: 'D', data: chartData.dValues, borderColor: 'blue', fill: false, tension: 0.4 }
     ]
   },
   options: {
+    animation: {
+      duration: 0, // Smooth morph effect duration
+      easing: 'easeInOutQuad' // Easing function for smooth transitions
+    },
     scales: {
       x: { title: { display: true, text: 'Time (s)' } },
       y: { title: { display: true, text: 'Value' }, beginAtZero: true }
@@ -98,11 +102,6 @@ document.getElementById('reset-button').addEventListener('click', () => {
   location.reload();
 });
 
-document.getElementById('toggle-chart-button').addEventListener('click', function() {
-    const pidChart = document.getElementById('pid-chart');
-    pidChart.style.display = pidChart.style.display === 'none' ? 'block' : 'none';
-});
-
 function pidController() {
   const error = target - position;
   integral += error * dt;
@@ -114,18 +113,13 @@ function pidController() {
 
   previousError = error;
 
-  if (chartData.labels.length > 200) {
-    chartData.labels.pop();
-    chartData.pValues.shift();
-    chartData.iValues.shift();
-    chartData.dValues.shift();
-  }
+  chartData.pValues.pop();
+  chartData.iValues.pop();
+  chartData.dValues.pop();
 
-  // Update chart data
-  chartData.labels.push((-20 + chartData.labels.length * dt).toFixed(1));
-  chartData.pValues.push(p);
-  chartData.iValues.push(i);
-  chartData.dValues.push(d);
+  chartData.pValues.unshift(p);
+  chartData.iValues.unshift(i);
+  chartData.dValues.unshift(d);
 
   pidChart.update();
 
@@ -168,7 +162,7 @@ function draw() {
   // Draw current position
   ctx.beginPath();
   ctx.arc(position, canvas.height / 2, 10, 0, Math.PI * 2);
-  ctx.fillStyle = 'blue';
+  ctx.fillStyle = 'orange';
   ctx.fill();
 }
 
