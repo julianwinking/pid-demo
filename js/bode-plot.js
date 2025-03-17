@@ -4,56 +4,34 @@ function calculateBodeData(Kp, Ki, Kd, frequencies) {
     const phase = [];
 
     frequencies.forEach((omega) => {
-        if (omega === 0) omega = 1e-10; // Schutz gegen Division durch Null
-        if (omega > 1e6) omega = 1e6; // Begrenze omega, um ungültige Werte zu vermeiden
-
         const jw = math.complex(0, omega); // jω
-        const pid = Kp + Ki / jw + Kd * jw; // PID-Übertragungsfunktion
+        const pid = math.add(Kp, math.divide(Ki, jw), math.multiply(Kd, jw)); // PID transfer function
 
-        // Debugging: Überprüfe die Berechnung
-        console.log(`omega: ${omega}, jw: ${jw}, pid: ${pid}`);
-
-        if (!isNaN(math.abs(pid))) {
-            magnitude.push(20 * Math.log10(math.abs(pid))); // Betrag in dB
-            phase.push((math.arg(pid) * 180) / Math.PI); // Phase in Grad
-        } else {
-            magnitude.push(NaN);
-            phase.push(NaN);
-        }
+        magnitude.push(20 * Math.log10(math.abs(pid))); // Magnitude in dB
+        phase.push((math.arg(pid) * 180) / Math.PI); // Phase in degrees
     });
 
     return { magnitude, phase };
 }
 
-// Funktion zur Berechnung der Ortskurve (Nyquist-Diagramm)
+// Corrected function to calculate Nyquist data
 function calculateNyquistData(Kp, Ki, Kd, frequencies) {
     const real = [];
     const imag = [];
 
     frequencies.forEach((omega) => {
-        if (omega === 0) omega = 1e-10; // Schutz gegen Division durch Null
-        if (omega > 1e6) omega = 1e6; // Begrenze omega, um ungültige Werte zu vermeiden
-
         const jw = math.complex(0, omega); // jω
-        const pid = Kp + Ki / jw + Kd * jw; // PID-Übertragungsfunktion
+        const pid = math.add(Kp, math.divide(Ki, jw), math.multiply(Kd, jw)); // PID transfer function
 
-        // Debugging: Überprüfe die Berechnung
-        console.log(`omega: ${omega}, jw: ${jw}, pid: ${pid}`);
-
-        if (!isNaN(math.abs(pid))) {
-            real.push(math.re(pid)); // Realteil
-            imag.push(math.im(pid)); // Imaginärteil
-        } else {
-            real.push(NaN);
-            imag.push(NaN);
-        }
+        real.push(math.re(pid)); // Real part
+        imag.push(math.im(pid)); // Imaginary part
     });
 
     return { real, imag };
 }
 
 // Frequenzbereich definieren
-const frequencies = Array.from({ length: 500 }, (_, i) => 0.1 * Math.pow(10, i / 100));
+const frequencies = Array.from({ length: 500 }, (_, i) => Math.pow(10, i / 100));
 
 // Debugging: Frequenzen überprüfen
 console.log("Frequencies:", frequencies);
@@ -152,16 +130,9 @@ Plotly.newPlot("nyquist-plot", [nyquistTrace], nyquistLayout);
 
 // Funktion zum Aktualisieren der Plots
 function updatePlots(Kp, Ki, Kd, currentFrequency) {
-    // Bode-Daten berechnen
     const bodeData = calculateBodeData(Kp, Ki, Kd, frequencies);
 
-    // Nyquist-Daten berechnen
-    const nyquistData = calculateNyquistData(Kp, Ki, Kd, frequencies);
-
-    // Markierung der aktuellen Frequenz
-    const currentMagnitude = 20 * Math.log10(math.abs(Kp + Ki / math.complex(0, currentFrequency) + Kd * math.complex(0, currentFrequency)));
-    const currentPhase = (math.arg(Kp + Ki / math.complex(0, currentFrequency) + Kd * math.complex(0, currentFrequency)) * 180) / Math.PI;
-
+    // Update Bode plot
     const magnitudeTrace = {
         x: frequencies,
         y: bodeData.magnitude,
@@ -181,14 +152,41 @@ function updatePlots(Kp, Ki, Kd, currentFrequency) {
         yaxis: "y2",
     };
 
-    const currentFrequencyTrace = {
-        x: [currentFrequency],
-        y: [currentMagnitude],
+    const currentFrequencyLine = {
+        x: [currentFrequency, currentFrequency],
+        y: [Math.min(...bodeData.magnitude), Math.max(...bodeData.magnitude)],
         type: "scatter",
-        mode: "markers",
+        mode: "lines",
         name: "Current Frequency",
-        marker: { color: "orange", size: 10 },
+        line: { color: "orange", dash: "dot" },
     };
+
+    const bodeLayout = {
+        title: "Bode Plot",
+        xaxis: { 
+            title: "Frequency (rad/s)", 
+            type: "log",
+            range: [Math.log10(currentFrequency / 10), Math.log10(currentFrequency * 10)] // Adjust range dynamically
+        },
+        yaxis: { title: "Magnitude (dB)" },
+        yaxis2: { title: "Phase (°)", overlaying: "y", side: "right" },
+        plot_bgcolor: "#f3f3f3",
+        paper_bgcolor: "#f3f3f3",
+    };
+
+    Plotly.newPlot("bode-plot", [magnitudeTrace, phaseTrace, currentFrequencyLine], bodeLayout);
+
+    // Update Nyquist plot
+    updateNyquistPlot(Kp, Ki, Kd, currentFrequency);
+}
+
+// Update Nyquist plot
+function updateNyquistPlot(Kp, Ki, Kd, currentFrequency) {
+    const nyquistData = calculateNyquistData(Kp, Ki, Kd, frequencies);
+
+    // Calculate current frequency point
+    const jw = math.complex(0, currentFrequency);
+    const pidAtCurrentFreq = math.add(Kp, math.divide(Ki, jw), math.multiply(Kd, jw));
 
     const nyquistTrace = {
         x: nyquistData.real,
@@ -199,53 +197,24 @@ function updatePlots(Kp, Ki, Kd, currentFrequency) {
         line: { color: "green" },
     };
 
-    const currentNyquistTrace = {
-        x: [math.re(Kp + Ki / math.complex(0, currentFrequency) + Kd * math.complex(0, currentFrequency))],
-        y: [math.im(Kp + Ki / math.complex(0, currentFrequency) + Kd * math.complex(0, currentFrequency))],
+    const currentNyquistPoint = {
+        x: [math.re(pidAtCurrentFreq)],
+        y: [math.im(pidAtCurrentFreq)],
         type: "scatter",
         mode: "markers",
         name: "Current Frequency",
         marker: { color: "orange", size: 10 },
     };
 
-    // Layouts
-    const bodeLayout = {
-        title: "Bode Plot",
-        xaxis: {
-            title: "Frequency (rad/s)",
-            type: "log",
-        },
-        yaxis: {
-            title: "Magnitude (dB)",
-        },
-        yaxis2: {
-            title: "Phase (°)",
-            overlaying: "y",
-            side: "right",
-        },
-        legend: { x: 0.5, y: -0.3, orientation: "h" }, // Move legend below the chart
-        plot_bgcolor: "#f3f3f3", // Match simulation container background
-        paper_bgcolor: "#f3f3f3", // Match simulation container background
-        margin: { l: 50, r: 50, t: 50, b: 50 }, // Adjust margins to prevent overlap
-    };
-
     const nyquistLayout = {
         title: "Nyquist Plot",
-        xaxis: {
-            title: "Real Part",
-        },
-        yaxis: {
-            title: "Imaginary Part",
-        },
-        legend: { x: 0.5, y: -0.3, orientation: "h" }, // Move legend below the chart
-        plot_bgcolor: "#f3f3f3", // Match simulation container background
-        paper_bgcolor: "#f3f3f3", // Match simulation container background
-        margin: { l: 50, r: 50, t: 50, b: 50 }, // Adjust margins to prevent overlap
+        xaxis: { title: "Real Part" },
+        yaxis: { title: "Imaginary Part" },
+        plot_bgcolor: "#f3f3f3",
+        paper_bgcolor: "#f3f3f3",
     };
 
-    // Plots aktualisieren
-    Plotly.newPlot("bode-plot", [magnitudeTrace, phaseTrace, currentFrequencyTrace], bodeLayout);
-    Plotly.newPlot("nyquist-plot", [nyquistTrace, currentNyquistTrace], nyquistLayout);
+    Plotly.newPlot("nyquist-plot", [nyquistTrace, currentNyquistPoint], nyquistLayout);
 }
 
 // Event-Listener für Slider

@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to handle menu activation
 function activateMenuItem(menuId) {
+    if (menuId === 'tutorial-btn') return; // Skip activation for the tutorial button
+
     // Remove 'active' class from all menu items
     document.querySelectorAll('.menu-item').forEach(item => {
         item.classList.remove('active');
@@ -51,8 +53,7 @@ function activateMenuItem(menuId) {
 
 // Event listeners for menu items
 document.getElementById('tutorial-btn').addEventListener('click', () => {
-    activateMenuItem('tutorial-btn');
-    // ...additional logic for showing the tutorial section...
+    document.getElementById('tutorial-popup').style.display = 'block';
 });
 
 document.getElementById('model1-btn').addEventListener('click', () => {
@@ -271,4 +272,43 @@ document.querySelectorAll('.info-link').forEach(link => {
         const target = event.currentTarget.getAttribute('data-target');
         showDeepDiveSection(target);
     });
+});
+
+let currentStep = 1;
+const totalSteps = document.querySelectorAll('.tutorial-step').length;
+
+document.getElementById('next-step').addEventListener('click', () => {
+    if (currentStep < totalSteps) {
+        document.getElementById(`step-${currentStep}`).style.display = 'none';
+        currentStep++;
+        document.getElementById(`step-${currentStep}`).style.display = 'block';
+    }
+    updateNavigationButtons();
+});
+
+document.getElementById('prev-step').addEventListener('click', () => {
+    if (currentStep > 1) {
+        document.getElementById(`step-${currentStep}`).style.display = 'none';
+        currentStep--;
+        document.getElementById(`step-${currentStep}`).style.display = 'block';
+    }
+    updateNavigationButtons();
+});
+
+function updateNavigationButtons() {
+    document.getElementById('prev-step').disabled = currentStep === 1;
+    document.getElementById('next-step').disabled = currentStep === totalSteps;
+}
+
+// Reset tutorial to the first step when closed
+document.querySelector('.close-btn').addEventListener('click', () => {
+    document.getElementById(`step-${currentStep}`).style.display = 'none';
+    currentStep = 1;
+    document.getElementById(`step-${currentStep}`).style.display = 'block';
+    updateNavigationButtons();
+});
+
+document.getElementById('tutorial-btn').addEventListener('click', () => {
+    // Open the tutorial popup without modifying the active menu item
+    document.getElementById('tutorial-popup').style.display = 'block';
 });
