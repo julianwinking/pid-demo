@@ -40,6 +40,7 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
+/* Keep the main container at full height */
 .main-container {
     display: flex;
     height: 100%;
@@ -56,6 +57,7 @@ nav ul li a:hover {
     justify-content: space-between;
     height: 100%;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .sidebar h1 {
@@ -81,7 +83,8 @@ nav ul li a:hover {
 }
 
 #model1-sidebar {
-    width: 500px;
+    width: 15vw;
+    overflow-y: auto;
 }
 
 #deepdive-sidebar {
@@ -93,7 +96,7 @@ nav ul li a:hover {
 }
 
 #model2-sidebar {
-    width: 500px;
+    width: 15vw;
 }
 
 .sub-sidebar ul {
@@ -148,47 +151,86 @@ nav ul li a:hover {
     background-color: #f3f3f3;
 }
 
-#simulation-container {
+/* Focus on content inside the simulation container */
+#simulation-container, #simulation-container2 {
     padding: 0 15%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: auto; /* Enable scrolling if needed */
 }
 
-#simulation-container2 {
-    padding: 0 15%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#canvas {
+/* Adjust the canvas size to fit within 80vh */
+#canvas, #canvas2 {
     border: 1px solid rgb(221, 221, 221);
     border-radius: 15px;
     box-shadow: rgba(100, 100, 111, 0.067) 0px 7px 29px 0px;
-    width: 80%;
+    width: auto;
     height: auto;
+    max-height: 35vh; /* Limit height to 35% of viewport height */
     background-color: white;
 }
 
-#canvas2 {
-    border: 1px solid rgb(221, 221, 221);
-    border-radius: 15px;
-    box-shadow: rgba(100, 100, 111, 0.067) 0px 7px 29px 0px;
-    width: 80%;
-    height: auto;
-    background-color: white;
+/* Reduce the size of the PID chart */
+#pid-chart, #pid-chart2 {
+    margin-top: 15px;
+    width: 100%;
+    max-height: 20vh; /* Limit height to 20% of viewport height */
 }
 
-#pid-chart {
-    margin-top: 60px;
+/* Adjust the analytics container layout and size */
+#analytics-container {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column; /* Stack plots vertically by default */
+    gap: 10px;
+    width: 100%;
+    max-height: 25vh; /* Limit height to 25% of viewport height */
 }
 
-#pid-chart2 {
-    margin-top: 60px;
+#nyquist-plot, #bode-plot {
+    flex: 1;
+    height: 12vh; /* Set height to 12% of viewport height */
+    min-height: 150px;
 }
 
-.deepdive {
+/* Media query for larger screens to show plots side by side */
+@media (min-width: 1200px) and (min-height: 800px) {
+    #analytics-container {
+        flex-direction: row;
+        max-height: 20vh;
+    }
+    
+    #nyquist-plot, #bode-plot {
+        height: 20vh;
+    }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    #simulation-container, #simulation-container2 {
+        padding: 0 5%;
+    }
+    
+    #canvas, #canvas2 {
+        max-height: 30vh;
+    }
+    
+    #pid-chart, #pid-chart2 {
+        max-height: 15vh;
+    }
+    
+    #analytics-container {
+        max-height: 30vh;
+    }
+    
+    #nyquist-plot, #bode-plot {
+        height: 15vh;
+        min-height: 120px;
+    }
+}
+
+#deepdive {
     display: flex;
     width: 100%;
     background-color: #f1f1f1;
@@ -528,19 +570,6 @@ input[type="range"]:disabled {
     text-align: right;
     display: inline-block;
     white-space: nowrap;
-}
-
-#analytics-container {
-    margin-top: 30px;
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    width: 100%;
-}
-
-#nyquist-plot, #bode-plot {
-    flex: 1;
-    height: 500px;
 }
 
 .info-link {

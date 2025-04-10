@@ -10,8 +10,6 @@ document.getElementById('tutorial-btn').addEventListener('click', function() {
 document.getElementById('deepdive-btn').addEventListener('click', function() {
     document.getElementById('model1').style.display = 'none';
     document.getElementById('deepdive').style.display = 'flex';
-    // Remove the call to loadDeepDiveContent
-    // loadDeepDiveContent();
 });
 
 document.querySelector('.close-btn').addEventListener('click', function() {
@@ -19,11 +17,11 @@ document.querySelector('.close-btn').addEventListener('click', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize default view
     document.getElementById('model1').style.display = 'flex';
     document.getElementById('deepdive').style.display = 'none';
-});
 
-document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners for introduction and controllers buttons
     document.getElementById('introduction-btn').addEventListener('click', () => {
         document.getElementById('introduction-section').style.display = 'block';
         document.getElementById('controllers-section').style.display = 'none';
@@ -54,9 +52,7 @@ function activateMenuItem(menuId) {
 // Event listeners for menu items
 document.getElementById('tutorial-btn').addEventListener('click', () => {
     document.getElementById('tutorial-popup').style.display = 'block';
-});
-
-document.getElementById('model1-btn').addEventListener('click', () => {
+// Removed duplicate event listener for 'tutorial-btn' to avoid redundancy
     activateMenuItem('model1-btn');
     // ...additional logic for showing the model1 section...
 });
@@ -180,6 +176,11 @@ function showDeepDiveSection(target) {
     activateMenuItem('deepdive-btn');
 }
 
+/**
+ * Loads and displays content in the Deep Dive section based on the provided target.
+ * 
+ * @param {string} target - The identifier for the content to be displayed (e.g., 'kp-info', 'ki-info', 'kd-info').
+ */
 function loadDeepDiveContent(target) {
     const deepDiveContainer = document.getElementById('deepdive-container');
     deepDiveContainer.innerHTML = ''; // Clear existing content
