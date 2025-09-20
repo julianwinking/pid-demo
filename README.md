@@ -21,18 +21,12 @@ An interactive, browser-based demo that visually explains how PID (Proportional-
 
 PID controllers are fundamental components in control systems engineering, widely used in industrial automation, robotics, and process control. This demo offers an intuitive and interactive way to explore PID tuning concepts directly in the browser—no additional software required.
 
-It is designed for:
-- Students learning control theory
-- Engineers looking to visualize PID tuning effects
-- Enthusiasts exploring feedback control systems
-
 ## Features
 
 - Interactive sliders to tune PID parameters: **Kp**, **Ki**, and **Kd**
 - Real-time visualization of system response to input changes
 - Frequency-domain analysis with Nyquist and Bode plots
 - Educational deep-dive on PID controller concepts and tuning methods
-- Reset functionality for quick experimentation and learning
 
 ## Getting Started
 
