@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PID Controller Demo</title>
     <meta name="description" content="Explore the fundamentals of PID controllers with interactive simulations and deep dive into control systems concepts.">
-    <meta name="keywords" content="PID controller, control systems, interactive simulation, deep dive, control theory, engineering, tutorial">
+    <meta name="keywords" content="PID controller, control systems, interactive simulation, deep dive, control theory, engineering">
     <meta name="author" content="Julian Winking">
     <link rel="stylesheet" href="css/style.css">
     <meta property="og:url" content="https://winki.ng/projects/pid-demo/"/>
@@ -17,10 +17,6 @@
             <h1>PID Controller Demo</h1>
             <p>Explore the principles of PID controllers and their role in control systems through this interactive demo. This tool is designed to help you visualize and understand key concepts in control theory with hands-on simulations.</p>
             <ul>
-                <li id="tutorial-btn" class="menu-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Question"><circle cx="12" cy="12" r="10"/><path d="M10 8.484C10.5 7.494 11 7 12 7c1.246 0 2 .989 2 1.978s-.5 1.483-2 2.473V13m0 3.5v.5"/></svg>
-                    Tutorial
-                </li>                
                 <li id="model1-btn" class="menu-item active">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Circle"><circle cx="12" cy="12" r="10"/></svg>
                     Model 1
@@ -29,10 +25,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-TriangleUp"><path d="M12 7l-6 8h12l-6-8z"/></svg>
                     Model 2
                 </li>
-                <li id="deepdive-btn" class="menu-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-BookOpen"><path d="M2 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/><path d="M12 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/></svg>
-                    Deep Dive
-                </li>
+                
                 <li id="source-code-btn" class="menu-item">
                     <a href="https://github.com/julianwinking/pid-demo" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Code"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
@@ -57,9 +50,7 @@
                 <div>
                     <div class="label-container">
                         <label for="kp">Kp:</label>
-                        <a href="#" class="info-link" data-target="kp-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Proportional gain: Higher values react stronger to current error, speeding up response but risking overshoot.">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="kp" min="0" max="10" step="0.1" value="1.0">
@@ -69,9 +60,7 @@
                 <div>
                     <div class="label-container">
                         <label for="ki">Ki:</label>
-                        <a href="#" class="info-link" data-target="ki-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Integral gain: Eliminates steady-state error by accumulating past error; too high can cause oscillations (windup).">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="ki" min="0" max="10" step="0.1" value="0.1">
@@ -81,9 +70,7 @@
                 <div>
                     <div class="label-container">
                         <label for="kd">Kd:</label>
-                        <a href="#" class="info-link" data-target="kd-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Derivative gain: Damps changes by reacting to error rate; reduces overshoot but amplifies noise if too high.">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="kd" min="0" max="10" step="0.1" value="0.01">
@@ -94,9 +81,7 @@
                 <div>
                     <div class="label-container">
                         <label for="mass">Mass:</label>
-                        <a href="#" class="info-link" data-target="mass-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Inertia of the object: Higher mass slows response and requires more control effort.">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="mass" min="1" max="20" step="0.1" value="5">
@@ -107,9 +92,7 @@
                 <div>
                     <div class="label-container">
                         <label for="target">Target:</label>
-                        <a href="#" class="info-link" data-target="target-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Desired setpoint the controller tries to reach and hold.">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="target" min="0" max="800" step="1" value="400">
@@ -119,21 +102,17 @@
                 <div>
                     <div class="label-container">
                         <label for="amplitude">Amplitude:</label>
-                        <a href="#" class="info-link" data-target="amplitude-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Strength of external disturbance applied in the simulation.">i</span>
                     </div>
                     <div class="slider-container">
-                        <input type="range" id="amplitude" min="0" max="100" step="1" value="50">
+                        <input type="range" id="amplitude" min="0" max="100" step="1" value="50" title="Amplitude: Strength of external disturbance applied in the simulation.">
                         <span id="amplitude-value" class="slider-value">50</span>
                     </div>
                 </div>
                 <div>
                     <div class="label-container">
                         <label for="frequency">Frequency:</label>
-                        <a href="#" class="info-link" data-target="frequency-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="How fast the disturbance oscillates; tests the system's high-frequency response.">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="frequency" min="0" max="1.5" step="0.05" value="0.1">
@@ -144,9 +123,7 @@
                 <div>
                     <div class="label-container">
                         <label for="noise">Noise:</label>
-                        <a href="#" class="info-link" data-target="noise-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Random measurement disturbance; higher values make control noisier.">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="noise" min="0" max="10" step="0.1" value="0">
@@ -172,9 +149,7 @@
                 <div>
                     <div class="label-container">
                         <label for="kp2">Kp:</label>
-                        <a href="#" class="info-link" data-target="kp-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Proportional gain. Higher values react stronger to current error, speeding up response but risking overshoot.">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="kp2" min="0" max="10" step="0.1" value="1.0">
@@ -184,9 +159,7 @@
                 <div>
                     <div class="label-container">
                         <label for="ki2">Ki:</label>
-                        <a href="#" class="info-link" data-target="ki-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Integral gain. Eliminates steady-state error by accumulating past error; too high can cause oscillations (windup).">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="ki2" min="0" max="10" step="0.1" value="0.1">
@@ -196,9 +169,7 @@
                 <div>
                     <div class="label-container">
                         <label for="kd2">Kd:</label>
-                        <a href="#" class="info-link" data-target="kd-info">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ai ai-Info"><circle cx="12" cy="12" r="10"/><path d="M12 7h.01"/><path d="M10 11h2v5"/><path d="M10 16h4"/></svg>
-                        </a>
+                        <span class="info-icon" data-tooltip="Derivative gain. Damps changes by reacting to error rate; reduces overshoot but amplifies noise if too high.">i</span>
                     </div>
                     <div class="slider-container">
                         <input type="range" id="kd2" min="0" max="10" step="0.1" value="0.01">
@@ -214,355 +185,10 @@
             </div>
         </div>
 
-        <div id="deepdive" style="display: none;">
-            <div id="deepdive-sidebar" class="sub-sidebar">
-                <h2>Knowledge Wiki</h2>
-                <ul id="deepdive-navigation">
-                    <li class="clickable" data-target="introduction-section">Introduction</li>
-                    <li class="clickable" data-target="controllers-section">Controllers</li>
-                    <li class="clickable" data-target="kp-info">Proportional Gain (Kp)</li>
-                    <li class="clickable" data-target="ki-info">Integral Gain (Ki)</li>
-                    <li class="clickable" data-target="kd-info">Derivative Gain (Kd)</li>
-                    <li class="clickable" data-target="mass-info">Mass</li>
-                    <li class="clickable" data-target="target-info">Target</li>
-                    <li class="clickable" data-target="amplitude-info">Amplitude</li>
-                    <li class="clickable" data-target="frequency-info">Frequency</li>
-                    <li class="clickable" data-target="noise-info">Noise</li>
-                    <li class="clickable" data-target="nyquist-info">Nyquist Plot</li>
-                    <li class="clickable" data-target="bode-info">Bode Plot</li>
-                    <li class="clickable" data-target="stability-info">Stability</li>
-                </ul>
-            </div>
-            <div id="deepdive-container" class="container">
-                <div id="introduction-section" style="display: none;">
-                    <h2>Introduction to Control Systems</h2>
-                    <p>
-                        Control systems are used to manage, command, direct, or regulate the behavior of other devices or systems using control loops. They are essential in engineering and technology, enabling automation and precision in various applications, from industrial machinery to household appliances.
-                    </p>
-                    <p>
-                        A control system typically consists of sensors, controllers, and actuators. Sensors measure the current state of the system, controllers process this information to determine the necessary adjustments, and actuators implement these adjustments to achieve the desired outcome.
-                    </p>
-                    <br><strong>What to observe in the simulator:</strong><br>
-                    - Explore how the system responds to changes in parameters like Kp, Ki, and Kd.<br>
-                    - Observe the time-domain response (e.g., overshoot, settling time) and frequency-domain behavior (e.g., stability margins).
-                    <div class="tip">
-                        <strong>Tip:</strong> Understanding the basics of control systems is crucial for designing stable and efficient systems. Start with simple proportional control and gradually add complexity.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Ogata, K. (2010). Modern Control Engineering (5th ed.). Prentice Hall.</li>
-                            <li>Dorf, R. C., & Bishop, R. H. (2017). Modern Control Systems (13th ed.). Pearson.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="controllers-section" style="display: none;">
-                    <h2>Types of Controllers</h2>
-                    <p>
-                        Controllers are devices that manage the behavior of other devices or systems. They are the brain of a control system, processing input signals and generating output signals to achieve the desired system behavior.
-                    </p>
-                    <p>
-                        The most common types of controllers are:
-                        <ul>
-                            <li><strong>Proportional (P) Controller:</strong> Reacts to the current error. It is simple but may leave a steady-state error.</li>
-                            <li><strong>Proportional-Integral (PI) Controller:</strong> Combines proportional control with integral action to eliminate steady-state error.</li>
-                            <li><strong>Proportional-Derivative (PD) Controller:</strong> Adds derivative action to improve stability and reduce overshoot.</li>
-                            <li><strong>Proportional-Integral-Derivative (PID) Controller:</strong> Combines all three actions for precise and stable control.</li>
-                        </ul>
-                    </p>
-                    <br><strong>What to observe in the simulator:</strong><br>
-                    - Experiment with different controller types by adjusting Kp, Ki, and Kd.<br>
-                    - Notice how each type affects system behavior, such as response time, stability, and error correction.
-                    <div class="tip">
-                        <strong>Tip:</strong> Start with a P controller to understand the basics, then add integral and derivative actions to refine the system's performance.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Åström, K. J., & Murray, R. M. (2010). Feedback Systems: An Introduction for Scientists and Engineers. Princeton University Press.</li>
-                            <li>Nise, N. S. (2019). Control Systems Engineering (8th ed.). Wiley.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="kp-info" style="display: none;">
-                    <h2>Proportional Gain (Kp)</h2>
-                    <p>
-                        The Proportional Gain (Kp) is one of the three core components of a PID controller. It determines how strongly the controller reacts to the current error, which is the difference between the desired setpoint (target) and the current position of the system.
-                
-                        In your PID Controller Demo, you can adjust the Kp value using the slider. Increasing Kp makes the controller react more aggressively to errors. This typically speeds up the system’s response to changes in the target. However, if Kp is set too high, the system can become unstable and start oscillating or even diverge entirely.
-                
-                        Conversely, lowering Kp results in a slower response. The system might take longer to reach the target, and it may not fully correct the error.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Try increasing Kp slowly and watch how the system reacts. You'll likely see the system reach the target more quickly.<br>
-                        - If you push Kp too high, the system might overshoot the target and oscillate back and forth.<br>
-                        - A very low Kp results in sluggish movement, where the system struggles to reach the target.
-                
-                        Proportional control alone cannot eliminate steady-state error (the small remaining difference between the target and the actual value). That’s where the Integral and Derivative components come in.
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> A balanced Kp is crucial. In practice, start with a small Kp and gradually increase it while observing the system's stability and speed.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Åström, K. J., & Murray, R. M. (2010). Feedback Systems: An Introduction for Scientists and Engineers. Princeton University Press.</li>
-                            <li>Dorf, R. C., & Bishop, R. H. (2017). Modern Control Systems (13th ed.). Pearson.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="ki-info" style="display: none;">
-                    <h2>Integral Gain (Ki)</h2>
-                    <p>
-                        The Integral Gain (Ki) is the second component of the PID controller. It focuses on the accumulation of past errors over time. By integrating the error, Ki helps eliminate <strong>steady-state error</strong>, which is the persistent difference between the system output and the target that a Proportional controller (Kp) alone might not fix.
-                
-                        In your PID Controller Demo, adjusting Ki with the slider changes how much influence the accumulated error has on the controller output. Increasing Ki speeds up the elimination of steady-state error. However, setting Ki too high can make the system unstable, causing it to overshoot and oscillate.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Start with Ki at zero and notice that the system may never fully reach the target, especially if Kp is low.<br>
-                        - Gradually increase Ki and observe how the system corrects any remaining steady-state error.<br>
-                        - Be careful: a high Ki can lead to "integral windup," where the error accumulates too much, causing large overshoots and oscillations.
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> Integral action is powerful but needs to be tuned carefully. Some control strategies use methods like anti-windup techniques to prevent excessive accumulation.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Åström, K. J., & Murray, R. M. (2010). Feedback Systems: An Introduction for Scientists and Engineers. Princeton University Press.</li>
-                            <li>Ogata, K. (2010). Modern Control Engineering (5th ed.). Prentice Hall.</li>
-                        </ul>
-                    </div>
-                </div>                
-                <div id="kd-info" style="display: none;">
-                    <h2>Derivative Gain (Kd)</h2>
-                    <p>
-                        The Derivative Gain (Kd) is the third component of the PID controller. It reacts to the <strong>rate of change of the error</strong>. In simpler terms, it predicts where the system is heading by looking at how fast the error is changing and applies corrective action to counteract it.
-                
-                        In your PID Controller Demo, adjusting Kd changes the controller's ability to dampen oscillations and improve stability. Increasing Kd makes the system more resistant to sudden changes or noise, reducing overshoot and smoothing the response. However, too much derivative action can amplify noise and make the system jittery.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Try increasing Kd and see how it helps to reduce oscillations and overshoot after sudden changes in the target.<br>
-                        - Watch out: if there’s noise in the system (try adding noise with the slider), a high Kd can cause erratic behavior, since it amplifies rapid changes in error.
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> Derivative control acts like a brake. It anticipates future error and slows the system to avoid overshooting. But it’s sensitive to noise, so use it carefully.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Åström, K. J., & Murray, R. M. (2010). Feedback Systems: An Introduction for Scientists and Engineers. Princeton University Press.</li>
-                            <li>Franklin, G. F., Powell, J. D., & Emami-Naeini, A. (2019). Feedback Control of Dynamic Systems (8th ed.). Pearson.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="mass-info" style="display: none;">
-                    <h2>Mass</h2>
-                    <p>
-                        In your PID Controller Demo, the <strong>Mass</strong> slider adjusts the mass of the object being controlled. In real systems, mass represents inertia—how resistant the object is to changes in motion.
-                
-                        A heavier mass (larger value) responds more slowly to control actions because it requires more force (controller effort) to move. Conversely, a smaller mass responds faster but might be more sensitive to oscillations.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Increase the mass and watch how the system becomes slower to respond to changes in the target.<br>
-                        - Decrease the mass and notice how the system reacts more quickly, but may oscillate more if the controller gains are too aggressive.
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> Mass plays a critical role in system dynamics. A well-tuned controller should account for the object's mass to avoid sluggish or unstable behavior.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Ogata, K. (2010). Modern Control Engineering (5th ed.). Prentice Hall.</li>
-                            <li>Nise, N. S. (2019). Control Systems Engineering (8th ed.). Wiley.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="target-info" style="display: none;">
-                    <h2>Target</h2>
-                    <p>
-                        The <strong>Target</strong> parameter in your PID Controller Demo defines the desired setpoint for the system. It represents the value you want the system output (the controlled variable) to reach and maintain over time.
-                
-                        In practical terms, think of the target as the goal. For example, in a temperature control system, the target would be the desired room temperature.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Move the Target slider to change the desired setpoint. The system will try to adjust to the new target.<br>
-                        - A properly tuned controller will guide the system smoothly toward the target. If the controller parameters are not well-tuned, you might see overshoot, oscillations, or sluggish response.
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> In dynamic systems, the target can change over time. Watching how your system reacts to sudden target changes helps you understand the effectiveness of your controller.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Ogata, K. (2010). Modern Control Engineering (5th ed.). Prentice Hall.</li>
-                            <li>Franklin, G. F., Powell, J. D., & Emami-Naeini, A. (2019). Feedback Control of Dynamic Systems (8th ed.). Pearson.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="amplitude-info" style="display: none;">
-                    <h2>Amplitude</h2>
-                    <p>
-                        The <strong>Amplitude</strong> parameter controls the magnitude of oscillations or external disturbances applied to the system in your simulation.
-                
-                        In real-world systems, disturbances can be anything that pushes the system away from its target—like wind pushing a drone or a sudden load change on a motor. Amplitude simulates how strong these disturbances are.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Increase the Amplitude and see how the system responds to stronger disturbances.<br>
-                        - A well-tuned PID controller should correct for these disturbances and return the system to the target, but high disturbances might cause oscillations or instability if gains are not properly set.
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> Testing your system with varying amplitudes helps ensure that your controller can handle real-world uncertainty and remain stable.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Nise, N. S. (2019). Control Systems Engineering (8th ed.). Wiley.</li>
-                            <li>Ogata, K. (2010). Modern Control Engineering (5th ed.). Prentice Hall.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="frequency-info" style="display: none;">
-                    <h2>Frequency</h2>
-                    <p>
-                        The <strong>Frequency</strong> parameter specifies the rate (how fast) oscillations or disturbances are applied to the system. It determines how frequently the disturbance changes direction or intensity.
-                
-                        Higher frequencies simulate rapid, frequent disturbances, while lower frequencies represent slower, more gradual changes.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Increase the Frequency slider to simulate faster disturbances. Watch if the system can keep up with these quick changes.<br>
-                        - A controller with a high Derivative Gain (Kd) can help deal with high-frequency disturbances, but too much Kd may make the system noisy.
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> In control systems, frequency response is critical. Controllers must balance between responding quickly and avoiding overreacting to high-frequency noise.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Franklin, G. F., Powell, J. D., & Emami-Naeini, A. (2019). Feedback Control of Dynamic Systems (8th ed.). Pearson.</li>
-                            <li>Ogata, K. (2010). Modern Control Engineering (5th ed.). Prentice Hall.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="noise-info" style="display: none;">
-                    <h2>Noise</h2>
-                    <p>
-                        The <strong>Noise</strong> parameter introduces random variations into the system, simulating unpredictable real-world disturbances such as sensor inaccuracies, external interferences, or measurement noise.
-                
-                        In your PID Controller Demo, adding noise makes the system's behavior less predictable and tests the controller’s robustness.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Add a small amount of Noise and observe how the system reacts.<br>
-                        - High noise levels make it harder for the controller to maintain stability. Derivative control (Kd) is especially sensitive to noise because it reacts to rapid changes.
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> In real systems, noise filtering and controller tuning help mitigate these effects. Some controllers implement filters (like low-pass filters) to reduce noise influence.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Nise, N. S. (2019). Control Systems Engineering (8th ed.). Wiley.</li>
-                            <li>Åström, K. J., & Murray, R. M. (2010). Feedback Systems: An Introduction for Scientists and Engineers. Princeton University Press.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="nyquist-info" style="display: none;">
-                    <h2>Nyquist Plot</h2>
-                    <p>
-                        The <strong>Nyquist Plot</strong> is a graphical representation of a system’s frequency response in the complex plane. It helps analyze system stability by showing how the open-loop transfer function behaves as frequency varies.
-                
-                        In your PID Controller Demo, the Nyquist Plot updates as you change controller parameters. You can observe how the curve approaches the critical point (-1, 0), which relates to the Nyquist stability criterion.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Look at whether the Nyquist plot encircles the critical point (-1, 0). If it does improperly, the system may be unstable.<br>
-                        - Tuning Kp, Ki, and Kd changes the shape and path of the Nyquist plot.
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> The Nyquist plot helps visualize stability margins. The further the plot stays from (-1, 0), the more stable the system tends to be.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Ogata, K. (2010). Modern Control Engineering (5th ed.). Prentice Hall.</li>
-                            <li>Dorf, R. C., & Bishop, R. H. (2017). Modern Control Systems (13th ed.). Pearson.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="bode-info" style="display: none;">
-                    <h2>Bode Plot</h2>
-                    <p>
-                        The <strong>Bode Plot</strong> shows how the system responds to different frequencies. It consists of two plots: magnitude (gain) in decibels (dB) versus frequency and phase in degrees versus frequency.
-                
-                        In your PID Controller Demo, the Bode Plot updates in real-time as you adjust the controller parameters. This lets you see how the controller influences the system’s ability to handle inputs at different frequencies.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - A well-tuned controller will show a smooth magnitude plot with a gain crossover frequency and adequate phase margin (the difference from -180° at that point).<br>
-                        - High Kd can increase phase lag, while Ki affects low-frequency behavior (steady-state response).
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> The Bode plot is essential for understanding frequency response and designing stable controllers with sufficient gain and phase margins.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Franklin, G. F., Powell, J. D., & Emami-Naeini, A. (2019). Feedback Control of Dynamic Systems (8th ed.). Pearson.</li>
-                            <li>Åström, K. J., & Murray, R. M. (2010). Feedback Systems: An Introduction for Scientists and Engineers. Princeton University Press.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="stability-info" style="display: none;">
-                    <h2>Stability</h2>
-                    <p>
-                        <strong>Stability</strong> in control systems refers to the system’s ability to return to its desired state (equilibrium) after a disturbance. A stable system behaves predictably, without diverging or oscillating uncontrollably.
-                
-                        In your PID Controller Demo, stability depends on the balance of Kp, Ki, and Kd. If gains are too high or poorly tuned, the system can become unstable—leading to oscillations or divergence.
-                
-                        <br><strong>What to observe in the simulator:</strong><br>
-                        - Gradually increase Kp and watch how the system may become unstable if Kp is too high.<br>
-                        - Tune Ki and Kd to help regain stability and smoothness.<br>
-                        - Observe stability using both the time-domain response (upper plot) and frequency-domain plots (Nyquist and Bode).
-                    </p>
-                    <div class="tip">
-                        <strong>Tip:</strong> Stability analysis ensures safe and reliable system behavior. Use tools like the Bode plot’s phase margin or Nyquist plot encirclement to assess stability rigorously.
-                    </div>
-                    <div class="further-reading">
-                        <strong>Further Reading:</strong>
-                        <ul>
-                            <li>Dorf, R. C., & Bishop, R. H. (2017). Modern Control Systems (13th ed.). Pearson.</li>
-                            <li>Ogata, K. (2010). Modern Control Engineering (5th ed.). Prentice Hall.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
-    <div id="tutorial-popup" class="popup" style="display: none;">
-        <div class="popup-content">
-            <span class="close-btn">&times;</span>
-            <div id="tutorial-steps">
-                <div class="tutorial-step" id="step-1" style="display: block;">
-                    <h2>Welcome to the PID Controller Demo</h2>
-                    <p>This tutorial will guide you through the basics of using this tool.</p>
-                    <img src="images/step_1.png" alt="Step 1 Image" style="max-width: 80%; height: auto;">
-                </div>
-                <div class="tutorial-step" id="step-2" style="display: none;">
-                    <h2>Step 2: Adjusting Parameters</h2>
-                    <p>Use the sliders to adjust the PID parameters and observe the changes in the plots.</p>
-                    <img src="images/step_2.png" alt="Step 2 Image" style="max-width: 80%; height: auto;">
-                </div>
-                <div class="tutorial-step" id="step-3" style="display: none;">
-                    <h2>Step 3: Deep Dive</h2>
-                    <p>Click on the "Deep Dive" menu to explore detailed explanations of control system concepts.</p>
-                    <img src="images/step_3.png" alt="Step 3 Image" style="max-width: 80%; height: auto;">
-                </div>
-            </div>
-            <div class="tutorial-navigation">
-                <button id="prev-step" disabled>Previous</button>
-                <button id="next-step">Next</button>
-            </div>
-        </div>
-    </div>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script> <!-- Aktualisierte Version -->

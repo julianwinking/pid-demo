@@ -131,10 +131,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     side: "right",
                     range: [phaseMin, phaseMax]  // Dynamic range based on data
                 },
-                legend: { orientation: "h", y: -0.2 },  // Position legend below the plot
+                legend: { 
+                    orientation: "h", 
+                    y: -0.4,  // Move legend further down to avoid overlap
+                    x: 0.5,   // Center the legend horizontally
+                    xanchor: 'center'
+                },
                 plot_bgcolor: "#f3f3f3",
                 paper_bgcolor: "#f3f3f3",
-                margin: { l: 60, r: 60, t: 50, b: 60 }  // Add more margin for axis labels
+                margin: { l: 60, r: 60, t: 50, b: 100 }  // Increase bottom margin for legend
             };
 
             console.log("Plotting Bode plot...");
