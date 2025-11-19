@@ -11,7 +11,7 @@ let target = parseFloat(document.getElementById('target').value);
 let mass = parseFloat(document.getElementById('mass').value);
 let amplitude = parseFloat(document.getElementById('amplitude').value);
 let frequency = parseFloat(document.getElementById('frequency').value);
-let noise = parseFloat(document.getElementById('noise').value); // New noise parameter
+let noise = parseFloat(document.getElementById('noise').value);
 
 // System state
 let position = 800;
@@ -25,10 +25,10 @@ const dt = 0.1; // Time step
 
 // Data structure to hold chart values
 const chartData = {
-  labels: Array.from({ length: 200 }, (_, i) => (i * 0.1).toFixed(1)), // Times from 0 to 20s with 200 points
-  pValues: Array(200).fill(0), // 200 zeros
-  iValues: Array(200).fill(0), // 200 zeros
-  dValues: Array(200).fill(0)  // 200 zeros
+  labels: Array.from({ length: 200 }, (_, i) => (i * 0.1).toFixed(1)),
+  pValues: Array(200).fill(0),
+  iValues: Array(200).fill(0),
+  dValues: Array(200).fill(0)
 };
 
 // Chart.js setup with morph effect
@@ -45,8 +45,8 @@ const pidChart = new Chart(pidChartCtx, {
   },
   options: {
     animation: {
-      duration: 0, // Smooth morph effect duration
-      easing: 'easeInOutQuad' // Easing function for smooth transitions
+      duration: 0,
+      easing: 'easeInOutQuad'
     },
     scales: {
       x: { title: { display: true, text: 'Time (s)' } },
@@ -166,10 +166,26 @@ function draw() {
   ctx.fill();
 }
 
+let model1AnimationId;
+
+window.startModel1Logic = function() {
+    if (!model1AnimationId) {
+        loop();
+    }
+};
+
+window.stopModel1Logic = function() {
+    if (model1AnimationId) {
+        cancelAnimationFrame(model1AnimationId);
+        model1AnimationId = null;
+    }
+};
+
 function loop() {
   updateSystem();
   draw();
-  requestAnimationFrame(loop);
+  model1AnimationId = requestAnimationFrame(loop);
 }
 
-loop();
+// Initial start is handled by main.js
+

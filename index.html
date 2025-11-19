@@ -176,12 +176,78 @@
                         <span id="kd2-value" class="slider-value">0.01</span>
                     </div>
                 </div>
-                <button id="reset-button">Reset</button>
+                <h3>Object</h3>
+                <div>
+                    <div class="label-container">
+                        <label for="mass2">Mass:</label>
+                        <span class="info-icon" data-tooltip="Simulated inertia. Higher mass makes the ball accelerate slower for the same beam angle.">i</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="mass2" min="1" max="20" step="0.1" value="5">
+                        <span id="mass2-value" class="slider-value">5</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="label-container">
+                        <label for="beamInertia">Beam Inertia:</label>
+                        <span class="info-icon" data-tooltip="Resistance of the beam to rotation. Higher inertia causes the beam to react slower to control signals.">i</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="beamInertia" min="1" max="100" step="1" value="10">
+                        <span id="beamInertia-value" class="slider-value">10</span>
+                    </div>
+                </div>
+                <h3>Target</h3>
+                <div>
+                    <div class="label-container">
+                        <label for="target2">Target:</label>
+                        <span class="info-icon" data-tooltip="Desired position on the beam (0 is center).">i</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="target2" min="-200" max="200" step="1" value="0">
+                        <span id="target2-value" class="slider-value">0</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="label-container">
+                        <label for="amplitude2">Amplitude:</label>
+                        <span class="info-icon" data-tooltip="Strength of external disturbance applied in the simulation.">i</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="amplitude2" min="0" max="100" step="1" value="0">
+                        <span id="amplitude2-value" class="slider-value">0</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="label-container">
+                        <label for="frequency2">Frequency:</label>
+                        <span class="info-icon" data-tooltip="How fast the disturbance oscillates.">i</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="frequency2" min="0" max="1.5" step="0.05" value="0.1">
+                        <span id="frequency2-value" class="slider-value">0.1</span>
+                    </div>
+                </div>
+                <h3>Noise</h3>
+                <div>
+                    <div class="label-container">
+                        <label for="noise2">Noise:</label>
+                        <span class="info-icon" data-tooltip="Random measurement disturbance.">i</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="noise2" min="0" max="10" step="0.1" value="0">
+                        <span id="noise2-value" class="slider-value">0</span>
+                    </div>
+                </div>
+                <button id="reset-button2">Reset</button>
             </div>
-            <div id="simulation-container" class="container">
-                <h2>Model 2 is coming soon</h2>
+            <div id="simulation-container2" class="container">
                 <canvas id="canvas2" width="800" height="500"></canvas>
                 <canvas id="pid-chart2" width="800" height="250"></canvas>
+                <div id="analytics-container2">
+                    <div id="nyquist-plot2" style="width: 100%; height: 300px;"></div>
+                    <div id="bode-plot2" style="width: 100%; height: 300px;"></div>
+                </div>
             </div>
         </div>
 

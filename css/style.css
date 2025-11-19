@@ -110,7 +110,7 @@ nav ul li a:hover {
     width: 100%;
 }
 
-#reset-button {
+#reset-button, #reset-button2 {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px 20px;
@@ -127,17 +127,18 @@ nav ul li a:hover {
     transition: background-color 0.3s;
 }
 
-#reset-button:hover {
+#reset-button:hover, #reset-button2:hover {
     background-color: #f5c6cb;
 }
 
-#reset-button:active {
+#reset-button:active, #reset-button2:active {
     background-color: #f1b0b7;
 }
 
 .container {
     display: flex;
     flex: 1;
+    min-width: 0; /* Allow shrinking below content size */
     padding: 20px;
     box-sizing: border-box;
     align-items: center;
@@ -158,21 +159,24 @@ nav ul li a:hover {
     border: 1px solid rgb(221, 221, 221);
     border-radius: 15px;
     box-shadow: rgba(100, 100, 111, 0.067) 0px 7px 29px 0px;
-    width: auto;
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't overflow */
     height: auto;
     max-height: 35vh; /* Limit height to 35% of viewport height */
     background-color: white;
+    object-fit: contain; /* Ensure content aspect ratio is preserved if needed */
 }
 
-/* Reduce the size of the PID chart */
+/* PID chart */
 #pid-chart, #pid-chart2 {
     margin-top: 15px;
     width: 100%;
+    max-width: 100%; /* Ensure it doesn't overflow */
     max-height: 20vh; /* Limit height to 20% of viewport height */
 }
 
-/* Adjust the analytics container layout and size */
-#analytics-container {
+/* Analytics container layout and size */
+#analytics-container, #analytics-container2 {
     margin-top: 15px;
     display: flex;
     flex-direction: column; /* Stack plots vertically by default */
@@ -181,20 +185,20 @@ nav ul li a:hover {
     max-height: 25vh; /* Limit height to 25% of viewport height */
 }
 
-#nyquist-plot, #bode-plot {
+#nyquist-plot, #bode-plot, #nyquist-plot2, #bode-plot2 {
     flex: 1;
     height: 12vh; /* Set height to 12% of viewport height */
     min-height: 150px;
 }
 
-/* Media query for larger screens to show plots side by side */
+/* Media query for larger screens */
 @media (min-width: 1200px) and (min-height: 800px) {
-    #analytics-container {
+    #analytics-container, #analytics-container2 {
         flex-direction: row;
         max-height: 20vh;
     }
     
-    #nyquist-plot, #bode-plot {
+    #nyquist-plot, #bode-plot, #nyquist-plot2, #bode-plot2 {
         height: 20vh;
     }
 }
@@ -213,11 +217,11 @@ nav ul li a:hover {
         max-height: 15vh;
     }
     
-    #analytics-container {
+    #analytics-container, #analytics-container2 {
         max-height: 30vh;
     }
     
-    #nyquist-plot, #bode-plot {
+    #nyquist-plot, #bode-plot, #nyquist-plot2, #bode-plot2 {
         height: 15vh;
         min-height: 120px;
     }
@@ -226,11 +230,13 @@ nav ul li a:hover {
 
 
 #model1 {
-    width: 100%;
+    flex: 1;
+    min-width: 0; /* Allow shrinking below content size */
 }
 
 #model2 {
-    width: 100%;
+    flex: 1;
+    min-width: 0; /* Allow shrinking below content size */
     display: none;
 }
 

@@ -51,6 +51,11 @@ function switchModel(newModel) {
     }
 
     activeModel = newModel;
+    
+    // Trigger a resize event to ensure plots render correctly in the newly visible container
+    setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+    }, 100);
 }
 
 

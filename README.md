@@ -1,80 +1,68 @@
-# PID Controller Demo
+# PID Controller Visualization
 
-An interactive, browser-based demo that visually explains how PID (Proportional-Integral-Derivative) controllers work. This tool allows users to adjust PID parameters in real-time and observe their effect on system stability and performance.
+A lightweight, browser-based simulation designed to bridge the gap between control theory equations and intuitive understanding. I built this to provide a visual feedback loop for tuning PID parameters on a standard second-order system without the overhead of setting up MATLAB or Python environments.
 
 ![PID Demo Screenshot](images/step_1.png)
 
 ## Table of Contents
-- [PID Controller Demo](#pid-controller-demo)
-  - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
-  - [Features](#features)
-  - [Getting Started](#getting-started)
-    - [Run Locally](#run-locally)
-    - [Try the Live Demo](#try-the-live-demo)
-  - [Usage](#usage)
-  - [Contributing](#contributing)
-    - [How to Contribute](#how-to-contribute)
-  - [License](#license)
 
-## Introduction
+- [Overview](#overview)
+- [Simulation Models](#simulation-models)
+- [Key Capabilities](#key-capabilities)
+- [Quick Start](#quick-start)
+- [Usage Guide](#usage-guide)
+- [License](#license)
 
-PID controllers are fundamental components in control systems engineering, widely used in industrial automation, robotics, and process control. This demo offers an intuitive and interactive way to explore PID tuning concepts directly in the browser—no additional software required.
+## Overview
 
-## Features
+This tool provides a browser-based simulation for tuning PID controllers. It combines time-domain visualization with frequency-domain analysis to demonstrate the relationship between control parameters and system stability.
 
-- Interactive sliders to tune PID parameters: **Kp**, **Ki**, and **Kd**
-- Real-time visualization of system response to input changes
-- Frequency-domain analysis with Nyquist and Bode plots
-- Educational deep-dive on PID controller concepts and tuning methods
+## Simulation Models
 
-## Getting Started
+The application features two distinct physical models:
 
-### Run Locally
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/julianwinking/pid-demo.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd pid-demo
-    ```
-3. Open the demo:
-    ```bash
-    open index.html
-    ```
-    Or simply double-click `index.html` in your file explorer.
+- **Mass-Spring-Damper**: A stable, linear system ideal for understanding basic PID concepts.
+- **Ball and Beam**: An inherently unstable system that challenges users to balance a rolling ball on a tilting beam.
 
-### Try the Live Demo  
-👉 [PID Controller Demo](https://winki.ng/projects/pid-demo/index.html)
+## Key Capabilities
 
-## Usage
+- **Real-time Tuning**: Adjust $K_p$, $K_i$, and $K_d$ gains with immediate visual feedback on the step response.
+- **Dual Domain Analysis**: Simultaneous rendering of time-domain response and frequency-domain stability (Bode/Nyquist), allowing users to correlate gain margin/phase margin with overshoot and settling time.
+- **Zero Dependencies**: Written in vanilla JavaScript. No build steps, `npm install`, or backend required.
 
-1. Adjust the **Kp**, **Ki**, and **Kd** sliders to tune the PID controller.
-2. Observe changes in the system's behavior on the live chart.
-3. Explore the frequency-domain plots to understand stability and performance characteristics.
-4. Use the **Reset** button to restore default parameters and restart the simulation.
+## Quick Start
 
-## Contributing
+Since this is a client-side static application, you can run it directly.
 
-Contributions and feedback are welcome! If you have ideas for improvements or new features, feel free to open an issue or submit a pull request.
+### Local Execution
 
-### How to Contribute
-1. Fork the repository.
-2. Create a new feature branch:
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-3. Make your changes and commit them:
-    ```bash
-    git commit -m "Describe your changes"
-    ```
-4. Push to your fork:
-    ```bash
-    git push origin feature/your-feature-name
-    ```
-5. Open a pull request describing your contribution.
+#### Option A: Git (Recommended)
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/julianwinking/pid-demo.git
+   ```
+2. Open `index.html` in any modern browser.
+
+#### Option B: Direct Download
+
+1. [Download Source Code (ZIP)](https://github.com/julianwinking/pid-demo/archive/refs/heads/main.zip)
+2. Extract the folder and double-click `index.html`.
+
+### Live Version
+
+You can view the deployed instance here:  
+[winki.ng/projects/pid-demo](https://winki.ng/projects/pid-demo)
+
+## Usage Guide
+
+The simulation initializes with a standard overdamped system.
+
+1. **P-Term**: Increase $K_p$ to improve rise time. Note the emergence of steady-state error.
+2. **I-Term**: Introduce $K_i$ to eliminate steady-state error. Observe the potential for windup or oscillation if set too high.
+3. **D-Term**: Apply $K_d$ to dampen the overshoot caused by the integral term.
+4. **Stability Analysis**: Use the bottom charts to check the Nyquist plot. If the locus encircles the critical point $(-1, 0)$, the system has become unstable.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+Open source under the [MIT License](LICENSE).
